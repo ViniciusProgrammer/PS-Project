@@ -29,4 +29,14 @@ public class Usuario {
     @NotBlank(message = "Senha é obrigatório")
     private String senha;
 
+    //Para separar usuarios compradores de administradores
+    private String role;
+
+
+    //Find by email here
+    public static Usuario findByEmail(String email) {
+        // Implementation for finding user by email
+        return null;
+    }
+
 }
