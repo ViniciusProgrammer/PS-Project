@@ -2,6 +2,8 @@ package com.ps.backend.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 public class Foto {
@@ -15,6 +17,12 @@ public class Foto {
 
     @NotBlank(message = "URL é obrigatória")
     private String url;
+
+    @NotNull(message = "Preço é obrigatório")
+    @Positive(message = "Preço deve ser positivo")
+    private Double preco;
+
+    private String descricao;
 
     public Long getId() {
         return id;
