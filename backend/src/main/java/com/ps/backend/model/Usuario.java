@@ -1,32 +1,35 @@
 package com.ps.backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+@Entity
+@Table(name = "usuario")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 
-@Entity
 public class Usuario {
 
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private long userId;
-    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
     @NotBlank(message = "Nome é obrigatório")
+    @Column(nullable = false)
     private String nome;
 
     @NotBlank(message = "Email é obrigatório")
+    @Email(message = "Email inválido")
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @NotBlank(message = "Senha é obrigatório")
+    @NotBlank(message = "Senha é obrigatória")
+    @Column(nullable = false)
     private String senha;
 
     //Para separar usuarios compradores de administradores
