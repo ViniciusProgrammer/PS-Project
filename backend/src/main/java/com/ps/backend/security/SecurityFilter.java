@@ -1,16 +1,13 @@
 package com.ps.backend.security;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.ps.backend.model.Usuario;
 import com.ps.backend.repository.UsuarioRepository;
 
 import jakarta.servlet.FilterChain;
