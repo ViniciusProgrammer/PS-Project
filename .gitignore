@@ -1,0 +1,25 @@
+# IDEs
+.idea/
+.vscode/
+
+# Build
+backend/target/
+backend/build/
+
+# Logs
+*.log
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Banco H2
+*.mv.db
+*.trace.db
+
+# Java
+*.class
+
+# Env
+.env
+application-local.properties
