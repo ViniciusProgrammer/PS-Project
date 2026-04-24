@@ -44,3 +44,5 @@ public class FotoController {
         return ResponseEntity.noContent().build();
     }
 }
+
+//adicionar @PreAuthorize("hasRole('ADMIN')") para proteger rotas de admin, e criar um controller separado para rotas de admin, ou seja, criar um AdminFotoController e colocar as rotas de admin lá, e deixar as rotas de listagem e busca no FotoController, para que os usuarios comuns possam acessar
