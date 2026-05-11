@@ -49,4 +49,6 @@ public class AuthController {
         service.registrar(data);
         return ResponseEntity.ok("Usuário criado");
     }
+
+    //adicionando cometario apenas para testar o commit e o pipeline fucionando 
 }
