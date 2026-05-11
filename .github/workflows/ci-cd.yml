@@ -9,6 +9,21 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: psproject
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
     defaults:
       run:
         working-directory: backend
@@ -24,8 +39,11 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: Esperar MySQL iniciar
+        run: sleep 20
+
       - name: Compilar e executar testes
         run: mvn clean test
 
       - name: Build da imagem Docker
-        run: docker build -t ps-backend:latest . 
+        run: docker build -t ps-backend:latest .
