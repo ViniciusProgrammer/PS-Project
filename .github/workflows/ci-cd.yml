@@ -43,7 +43,7 @@ jobs:
         run: sleep 20
 
       - name: Compilar e executar testes
-        run: mvn clean test
+        run: mvn clean package
 
       - name: Build da imagem Docker
         run: docker build -t ps-backend:latest .
