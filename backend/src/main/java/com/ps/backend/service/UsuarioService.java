@@ -25,6 +25,13 @@ public class UsuarioService {
         usuario.setEmail(data.email());
         usuario.setSenha(senhaCriptografada);
 
-        repository.save(usuario);
+        salvar(usuario);
     }
+
+    public Usuario salvar(Usuario usuario) {
+        usuario.setSenha(encoder.encode(usuario.getSenha()));
+        return repository.save(usuario);
+    }
+
+
 }

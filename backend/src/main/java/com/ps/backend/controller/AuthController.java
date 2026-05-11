@@ -49,6 +49,7 @@ public class AuthController {
         service.registrar(data);
         return ResponseEntity.ok("Usuário criado");
     }
-
     //comentario so para teste, depois remover
+
+
 }
