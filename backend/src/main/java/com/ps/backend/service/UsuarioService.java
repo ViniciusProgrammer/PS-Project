@@ -18,6 +18,7 @@ public class UsuarioService {
     private PasswordEncoder encoder;
 
     public void cadastrar(RegisterDTO data) {
+        //criptografou a senha
         String senhaCriptografada = encoder.encode(data.senha());
 
         Usuario usuario = new Usuario();
@@ -29,8 +30,10 @@ public class UsuarioService {
     }
 
     public Usuario salvar(Usuario usuario) {
+
         usuario.setSenha(encoder.encode(usuario.getSenha()));
         return repository.save(usuario);
+    
     }
 
 
