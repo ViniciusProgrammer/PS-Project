@@ -2,6 +2,9 @@ name: Métricas DORA
 
 on: 
   workflow_dispatch:
+  push: 
+    branches: 
+      - 'main'
 
 jobs:
     dora:
