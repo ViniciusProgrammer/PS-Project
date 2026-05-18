@@ -1,0 +1,19 @@
+name: Métricas DORA
+
+on: 
+  workflow_dispatch:
+
+jobs:
+    dora:
+      runs-on: windows-latest
+      steps:
+        - name: Test frenquecy deploy
+          uses: DeveloperMetrics/deployment-frequency@main
+          with:
+            workflows: 'CI/CD Pipeline'
+            actions-token: "${{ secrets.GITHUB_TOKEN }}"
+        - name: Test lead time
+          uses: DeveloperMetrics/lead-time-for-changes@main
+          with:
+            workflows: 'CI/CD Pipeline'
+            actions-token: "${{ secrets.GITHUB_TOKEN }}"
