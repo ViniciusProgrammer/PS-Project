@@ -48,16 +48,15 @@ jobs:
 
               $cfr = ($failed / $total) * 100
 
-              Write-Host ""
-              Write-Host "=============================="
-              Write-Host "CHANGE FAILURE RATE"
-              Write-Host "=============================="
-              Write-Host "Total Deploys: $total"
-              Write-Host "Failed Deploys: $failed"
-              Write-Host ("CFR: {0:N2}%" -f $cfr)
+              Add-Content $env:GITHUB_STEP_SUMMARY "## Change Failure Rate"
+              Add-Content $env:GITHUB_STEP_SUMMARY ""
+              Add-Content $env:GITHUB_STEP_SUMMARY "- Total Deploys: $total"
+              Add-Content $env:GITHUB_STEP_SUMMARY "- Failed Deploys: $failed"
+              Add-Content $env:GITHUB_STEP_SUMMARY ("- CFR: {0:N2}%" -f $cfr)
             }
+              
 
-        
+        # MTTR
 
         - name: Calculate MTTR
           shell: pwsh
@@ -93,18 +92,9 @@ jobs:
 
                 $mttr = $successTime - $failedTime
 
-                Write-Host ""
-                Write-Host "=============================="
-                Write-Host "MTTR"
-                Write-Host "=============================="
-                Write-Host ("Recovery Time: {0:N2} hours" -f $mttr.TotalHours)
-
-              } else {
-
-                Write-Host "No recovery deployment found yet."
+                Add-Content $env:GITHUB_STEP_SUMMARY ""
+                Add-Content $env:GITHUB_STEP_SUMMARY "## Mean Time To Recovery"
+                Add-Content $env:GITHUB_STEP_SUMMARY ""
+                Add-Content $env:GITHUB_STEP_SUMMARY ("- MTTR: {0:N2} hours" -f $mttr.TotalHours)
               }
-
-            } else {
-
-              Write-Host "No failed deployments found."
             }
