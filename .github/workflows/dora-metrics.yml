@@ -20,3 +20,17 @@ jobs:
           with:
             workflows: 'CI/CD Pipeline'
             actions-token: "${{ secrets.GITHUB_TOKEN }}"
+          
+        # Change Failure Rate
+        - name: Change Failure Rate
+          uses: DeveloperMetrics/change-failure-rate@main
+          with:
+            workflows: 'CI/CD Pipeline'
+            actions-token: "${{ secrets.GITHUB_TOKEN }}"
+
+        # MTTR
+        - name: Mean Time To Recovery
+          uses: DeveloperMetrics/mean-time-to-recovery@main
+          with:
+            workflows: 'CI/CD Pipeline'
+            actions-token: "${{ secrets.GITHUB_TOKEN }}"
