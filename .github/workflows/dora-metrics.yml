@@ -22,15 +22,89 @@ jobs:
             actions-token: "${{ secrets.GITHUB_TOKEN }}"
           
         # Change Failure Rate
-        - name: Change Failure Rate
-          uses: DeveloperMetrics/change-failure-rate@main
-          with:
-            workflows: 'CI/CD Pipeline'
-            actions-token: "${{ secrets.GITHUB_TOKEN }}"
+        - name: Calculate CFR
+          shell: pwsh
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          run: |
 
-        # MTTR
-        - name: Mean Time To Recovery
-          uses: DeveloperMetrics/mean-time-to-recovery@main
-          with:
-            workflows: 'CI/CD Pipeline'
-            actions-token: "${{ secrets.GITHUB_TOKEN }}"
+            $headers = @{
+              Authorization = "token $env:GITHUB_TOKEN"
+            }
+
+            $url = "https://api.github.com/repos/itstherall/PS-Project/actions/runs"
+
+            $response = Invoke-RestMethod -Uri $url -Headers $headers
+
+            $runs = $response.workflow_runs
+
+            $total = $runs.Count
+
+            $failed = ($runs | Where-Object {
+              $_.conclusion -eq "failure"
+            }).Count
+
+            if ($total -gt 0) {
+
+              $cfr = ($failed / $total) * 100
+
+              Write-Host ""
+              Write-Host "=============================="
+              Write-Host "CHANGE FAILURE RATE"
+              Write-Host "=============================="
+              Write-Host "Total Deploys: $total"
+              Write-Host "Failed Deploys: $failed"
+              Write-Host ("CFR: {0:N2}%" -f $cfr)
+            }
+
+        
+
+        - name: Calculate MTTR
+          shell: pwsh
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          run: |
+
+            $headers = @{
+              Authorization = "token $env:GITHUB_TOKEN"
+            }
+
+            $url = "https://api.github.com/repos/itstherall/PS-Project/actions/runs"
+
+            $response = Invoke-RestMethod -Uri $url -Headers $headers
+
+            $runs = $response.workflow_runs
+
+            $failedRun = $runs | Where-Object {
+              $_.conclusion -eq "failure"
+            } | Select-Object -First 1
+
+            if ($failedRun) {
+
+              $successRun = $runs | Where-Object {
+                $_.conclusion -eq "success" -and
+                $_.run_number -gt $failedRun.run_number
+              } | Select-Object -First 1
+
+              if ($successRun) {
+
+                $failedTime = Get-Date $failedRun.updated_at
+                $successTime = Get-Date $successRun.updated_at
+
+                $mttr = $successTime - $failedTime
+
+                Write-Host ""
+                Write-Host "=============================="
+                Write-Host "MTTR"
+                Write-Host "=============================="
+                Write-Host ("Recovery Time: {0:N2} hours" -f $mttr.TotalHours)
+
+              } else {
+
+                Write-Host "No recovery deployment found yet."
+              }
+
+            } else {
+
+              Write-Host "No failed deployments found."
+            }
