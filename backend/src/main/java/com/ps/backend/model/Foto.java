@@ -32,4 +32,6 @@ public class Foto {
     private Double preco;
 
     private String descricao;
+
+    //para apresentação teste!
 }
