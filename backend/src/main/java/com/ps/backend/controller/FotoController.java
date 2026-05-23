@@ -29,7 +29,7 @@ public class FotoController {
     public ResponseEntity<Foto> buscar( @PathVariable Long eventoId, @PathVariable Long fotoId) {
 
         return ResponseEntity.ok(
-            service.buscarPorId(fotoId)
+            service.buscarPorId(fotoId, eventoId)
         );
     }
 
