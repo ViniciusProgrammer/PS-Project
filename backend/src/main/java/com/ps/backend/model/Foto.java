@@ -32,4 +32,8 @@ public class Foto {
     private Double preco;
 
     private String descricao;
+
+    @ManyToOne
+    @JoinColumn(name = "evento_id")
+    private Evento evento;
 }
