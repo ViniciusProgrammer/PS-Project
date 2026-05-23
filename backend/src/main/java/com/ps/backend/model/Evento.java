@@ -1,7 +1,9 @@
 package com.ps.backend.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -43,6 +45,10 @@ public class Evento {
     
     private String avisos;
     
-    @OneToMany(mappedBy = "evento")
-    private List<Foto> fotos;
+    @OneToMany(
+        mappedBy = "evento",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    private List<Foto> fotos = new ArrayList<>();
 }

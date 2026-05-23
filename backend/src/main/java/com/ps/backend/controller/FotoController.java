@@ -11,36 +11,52 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/fotos")
+@RequestMapping("/eventos/{eventoId}/fotos")
 public class FotoController {
 
     @Autowired
     private FotoService service;
 
     @GetMapping
-    public ResponseEntity<List<Foto>> listar() {
-        return ResponseEntity.ok(service.listar());
+    public ResponseEntity<List<Foto>> listar(@PathVariable Long eventoId) {
+
+        return ResponseEntity.ok(
+            service.listarPorEvento(eventoId)
+        );
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Foto> buscar(@PathVariable Long id) {
-        return ResponseEntity.ok(service.buscarPorId(id));
+    @GetMapping("/{fotoId}")
+    public ResponseEntity<Foto> buscar( @PathVariable Long eventoId, @PathVariable Long fotoId) {
+
+        return ResponseEntity.ok(
+            service.buscarPorId(fotoId)
+        );
     }
 
     @PostMapping
-    public ResponseEntity<Foto> criar(@RequestBody @Valid Foto foto) {
-        Foto salva = service.salvar(foto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(salva);
+    public ResponseEntity<Foto> criar(@PathVariable Long eventoId, @RequestBody @Valid Foto foto) {
+
+        Foto salva = service.salvar(foto, eventoId);
+
+        return ResponseEntity
+            .status(HttpStatus.CREATED)
+            .body(salva);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Foto> atualizar(@PathVariable Long id, @RequestBody @Valid Foto foto) {
-        return ResponseEntity.ok(service.atualizar(id, foto));
+    @PutMapping("/{fotoId}")
+    public ResponseEntity<Foto> atualizar(
+        @PathVariable Long eventoId, @PathVariable Long fotoId, @RequestBody @Valid Foto foto) {
+
+        return ResponseEntity.ok(
+            service.atualizar(eventoId, fotoId, foto)
+        );
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        service.deletar(id);
+    @DeleteMapping("/{fotoId}")
+    public ResponseEntity<Void> deletar(@PathVariable Long eventoId, @PathVariable Long fotoId) {
+
+        service.deletar(eventoId, fotoId);
+
         return ResponseEntity.noContent().build();
     }
 }
