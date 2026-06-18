@@ -3,7 +3,7 @@
 > Plataforma web para venda e distribuição de fotografias de eventos esportivos.
 
 **Disciplina:** Processos de Software  
-**Equipe:** Thereza Angélica · Vinicius Davi · Lucas de Oliveira · Leandro Felix  
+**Equipe:** Thereza Angélica · Vinicius Davi · Lucas de Oliveira 
 **Repositório:** https://github.com/itstherall/PS-Project.git  
 **Kanban:** https://github.com/users/itstherall/projects/3  
 **Versão:** 1.0 — Abril de 2026
