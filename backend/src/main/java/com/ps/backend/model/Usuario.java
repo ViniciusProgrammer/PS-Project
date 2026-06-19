@@ -1,5 +1,6 @@
 package com.ps.backend.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -81,5 +82,13 @@ public class Usuario implements UserDetails {
         return true;
     }
 
-    //comentario para teste
+
+    //Para registrar fotos já compradas
+    @ManyToMany
+    @JoinTable(
+        name = "usuario_foto",
+        joinColumns = @JoinColumn(name = "usuario_id"),
+        inverseJoinColumns = @JoinColumn(name = "foto_id")
+    )
+    private List<Foto> fotosCompradas = new ArrayList<>();
 }

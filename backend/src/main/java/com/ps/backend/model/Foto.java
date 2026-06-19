@@ -1,5 +1,8 @@
 package com.ps.backend.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -33,5 +36,13 @@ public class Foto {
 
     private String descricao;
 
-    //para apresentação teste!
+    @ManyToOne
+    @JoinColumn(name = "evento_id")
+    private Evento evento;
+
+    @ManyToMany(mappedBy = "fotos")
+    private List<Carrinho> carrinhos = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "fotosCompradas")
+    private List<Usuario> compradores = new ArrayList<>();
 }

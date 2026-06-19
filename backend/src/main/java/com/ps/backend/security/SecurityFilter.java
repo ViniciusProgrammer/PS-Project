@@ -38,6 +38,14 @@ public class SecurityFilter extends OncePerRequestFilter {
                     usuario, null, usuario.getAuthorities());
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            //Para debuggar o token e o email extraídos do token, além do usuário autenticado e suas roles
+            
+            System.out.println("TOKEN: " + token);
+            System.out.println("EMAIL: " + email);
+            System.out.println("USER: " + usuario.getUsername());
+            System.out.println("ROLES: " + usuario.getAuthorities());
+            
         }
 
         filterChain.doFilter(request, response);
