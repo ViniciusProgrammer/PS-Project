@@ -46,6 +46,8 @@ public class UsuarioService {
 
         usuario.setNome(data.nome());
         usuario.setEmail(data.email());
+
+        //TODO: cadastrar evento que dispara confirmação do novo email atualizado!
         
         return repository.save(usuario);
     }
