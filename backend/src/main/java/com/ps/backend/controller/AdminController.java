@@ -1,4 +1,4 @@
-@RestController
+//@RestController
 //@RequestMapping("/Admin")
 
 public class AdminController {

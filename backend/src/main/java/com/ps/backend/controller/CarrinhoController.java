@@ -24,7 +24,8 @@ public class CarrinhoController {
         Usuario usuario = (Usuario) authentication.getPrincipal();
 
         Carrinho carrinho = service.buscarCarrinhoDoUsuario(usuario.getId());
-
+        //Corrigir aqui
+        
         return ResponseEntity.ok(carrinho);
     }
 
