@@ -1,0 +1,8 @@
+CREATE TABLE pedidos (
+    id          BIGINT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id  BIGINT NOT NULL,
+    total       DECIMAL(10, 2) NOT NULL,
+    status      ENUM('PENDENTE', 'PAGO', 'CANCELADO') NOT NULL DEFAULT 'PENDENTE',
+    criado_em   DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
