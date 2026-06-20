@@ -82,13 +82,11 @@ public class Usuario implements UserDetails {
         return true;
     }
 
-
-    //Para registrar fotos já compradas
     @ManyToMany
     @JoinTable(
-        name = "usuario_foto",
-        joinColumns = @JoinColumn(name = "usuario_id"),
-        inverseJoinColumns = @JoinColumn(name = "foto_id")
+            name = "usuario_foto",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "foto_id")
     )
     private List<Foto> fotosCompradas = new ArrayList<>();
 }

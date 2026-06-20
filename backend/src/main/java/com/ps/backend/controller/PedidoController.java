@@ -1,11 +1,14 @@
 package com.ps.backend.controller;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import com.ps.backend.dto.pedido.PedidoRequestDTO;
 import com.ps.backend.dto.pedido.PedidoResponseDTO;
+import com.ps.backend.model.Usuario;
 import com.ps.backend.service.PedidoService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/pedidos")
@@ -19,12 +22,22 @@ public class PedidoController {
 
     @PostMapping
     public ResponseEntity<PedidoResponseDTO> criarPedido(
-            @RequestParam Long usuarioId,
+            @AuthenticationPrincipal Usuario usuario,
             @RequestBody PedidoRequestDTO dto) {
+        PedidoResponseDTO pedido = pedidoService.criarPedido(usuario.getId(), dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(pedido);
+    }
 
-        PedidoResponseDTO pedido =
-                pedidoService.criarPedido(usuarioId, dto);
+    @GetMapping
+    public ResponseEntity<List<PedidoResponseDTO>> listarPedidos(
+            @AuthenticationPrincipal Usuario usuario) {
+        return ResponseEntity.ok(pedidoService.listarPorUsuario(usuario.getId()));
+    }
 
-        return ResponseEntity.ok(pedido);
+    @GetMapping("/{id}")
+    public ResponseEntity<PedidoResponseDTO> buscarPedido(
+            @AuthenticationPrincipal Usuario usuario,
+            @PathVariable Long id) {
+        return ResponseEntity.ok(pedidoService.buscarPorId(id, usuario.getId()));
     }
 }

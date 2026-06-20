@@ -64,9 +64,9 @@ public class Evento {
     }
 
     @OneToMany(
-        mappedBy = "evento",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true
+            mappedBy = "evento",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
     )
     private List<Foto> fotos = new ArrayList<>();
 }
