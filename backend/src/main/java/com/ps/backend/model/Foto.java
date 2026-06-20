@@ -1,7 +1,10 @@
 package com.ps.backend.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -32,7 +35,8 @@ public class Foto {
 
     @NotNull(message = "Preço é obrigatório")
     @Positive(message = "Preço deve ser positivo")
-    private Double preco;
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal preco;
 
     private String descricao;
 
@@ -40,9 +44,7 @@ public class Foto {
     @JoinColumn(name = "evento_id")
     private Evento evento;
 
-    @ManyToMany(mappedBy = "fotos")
-    private List<Carrinho> carrinhos = new ArrayList<>();
-
-    @ManyToMany(mappedBy = "fotosCompradas")
-    private List<Usuario> compradores = new ArrayList<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "foto")
+    private List<ItemPedido> itensPedido = new ArrayList<>();
 }
