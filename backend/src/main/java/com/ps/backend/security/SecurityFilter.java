@@ -1,19 +1,17 @@
 package com.ps.backend.security;
 
-import java.io.IOException;
-
+import com.ps.backend.repository.UsuarioRepository;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.ps.backend.repository.UsuarioRepository;
-
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
@@ -25,27 +23,23 @@ public class SecurityFilter extends OncePerRequestFilter {
     private UsuarioRepository repository;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain)
             throws ServletException, IOException {
 
         var token = recuperarToken(request);
 
         if (token != null) {
             var email = tokenService.validarToken(token);
-            var usuario = repository.findByEmail(email).get();
 
-            var authentication = new UsernamePasswordAuthenticationToken(
-                    usuario, null, usuario.getAuthorities());
-
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-
-            //Para debuggar o token e o email extraídos do token, além do usuário autenticado e suas roles
-            
-            System.out.println("TOKEN: " + token);
-            System.out.println("EMAIL: " + email);
-            System.out.println("USER: " + usuario.getUsername());
-            System.out.println("ROLES: " + usuario.getAuthorities());
-            
+            if (email != null) {
+                repository.findByEmail(email).ifPresent(usuario -> {
+                    var authentication = new UsernamePasswordAuthenticationToken(
+                            usuario, null, usuario.getAuthorities());
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                });
+            }
         }
 
         filterChain.doFilter(request, response);
@@ -53,7 +47,9 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     private String recuperarToken(HttpServletRequest request) {
         var header = request.getHeader("Authorization");
-        if (header == null) return null;
+        if (header == null || !header.startsWith("Bearer ")) {
+            return null;
+        }
         return header.replace("Bearer ", "");
     }
 }

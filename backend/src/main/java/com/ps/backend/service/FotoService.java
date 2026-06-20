@@ -26,15 +26,15 @@ public class FotoService {
     public Foto buscarPorId(Long eventoId,Long fotoId) {
 
         Foto foto = repository.findById(fotoId)
-            .orElseThrow(() ->
-                new RecursoNaoEncontradoException(
-                    "Foto não encontrada"
-                )
-            );
+                .orElseThrow(() ->
+                        new RecursoNaoEncontradoException(
+                                "Foto não encontrada"
+                        )
+                );
 
         if(!foto.getEvento().getId().equals(eventoId)){
             throw new RecursoNaoEncontradoException(
-                "Foto não pertence ao evento"
+                    "Foto não pertence ao evento"
             );
         }
 

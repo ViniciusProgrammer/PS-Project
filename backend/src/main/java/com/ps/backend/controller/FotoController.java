@@ -13,15 +13,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/eventos/{eventoId}/fotos")
 public class FotoController {
-
     @Autowired
     private FotoService service;
 
     @GetMapping
     public ResponseEntity<List<Foto>> listar(@PathVariable Long eventoId) {
-
         return ResponseEntity.ok(
-            service.listarPorEvento(eventoId)
+                service.listarPorEvento(eventoId)
         );
     }
 
@@ -29,32 +27,30 @@ public class FotoController {
     public ResponseEntity<Foto> buscar( @PathVariable Long eventoId, @PathVariable Long fotoId) {
 
         return ResponseEntity.ok(
-            service.buscarPorId(fotoId, eventoId)
+                service.buscarPorId(fotoId, eventoId)
         );
     }
 
     @PostMapping
     public ResponseEntity<Foto> criar(@PathVariable Long eventoId, @RequestBody @Valid Foto foto) {
-
         Foto salva = service.salvar(foto, eventoId);
 
         return ResponseEntity
-            .status(HttpStatus.CREATED)
-            .body(salva);
+                .status(HttpStatus.CREATED)
+                .body(salva);
     }
 
     @PutMapping("/{fotoId}")
     public ResponseEntity<Foto> atualizar(
-        @PathVariable Long eventoId, @PathVariable Long fotoId, @RequestBody @Valid Foto foto) {
+            @PathVariable Long eventoId, @PathVariable Long fotoId, @RequestBody @Valid Foto foto) {
 
         return ResponseEntity.ok(
-            service.atualizar(eventoId, fotoId, foto)
+                service.atualizar(eventoId, fotoId, foto)
         );
     }
 
     @DeleteMapping("/{fotoId}")
     public ResponseEntity<Void> deletar(@PathVariable Long eventoId, @PathVariable Long fotoId) {
-
         service.deletar(eventoId, fotoId);
 
         return ResponseEntity.noContent().build();

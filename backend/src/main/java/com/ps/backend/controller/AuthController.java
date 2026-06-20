@@ -19,13 +19,10 @@ import com.ps.backend.service.AuthService;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-
     @Autowired
     AuthenticationManager authManager;
-
     @Autowired
     TokenService tokenService;
-
     @Autowired
     AuthService service;
 
@@ -38,7 +35,6 @@ public class AuthController {
 
         var auth = authManager.authenticate(authToken);
         var usuario = (Usuario) auth.getPrincipal();
-
         var token = tokenService.gerarToken(usuario);
 
         return ResponseEntity.ok(new TokenDTO(token));
@@ -49,6 +45,4 @@ public class AuthController {
         service.registrar(data);
         return ResponseEntity.ok("Usuário criado");
     }
-
-
 }
