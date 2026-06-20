@@ -4,5 +4,5 @@ CREATE TABLE pedidos (
     total       DECIMAL(10, 2) NOT NULL,
     status      ENUM('PENDENTE', 'PAGO', 'CANCELADO') NOT NULL DEFAULT 'PENDENTE',
     criado_em   DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id)
 );

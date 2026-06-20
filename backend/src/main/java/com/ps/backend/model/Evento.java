@@ -1,50 +1,68 @@
 package com.ps.backend.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Entity
-@Table(name = "evento") 
+@Table(name = "eventos")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Evento {
 
-    //tem que ter: id, data, local, descricao, titulo, observacao
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String slug;
-    
-    @NotBlank(message = "Titulo do evento é obrigatório!")
+    @NotBlank(message = "Título é obrigatório")
+    @Column(nullable = false, length = 200)
     private String titulo;
 
-    private String data;
-    
-    @NotBlank(message = "O local do evento é obrigatório!")
-    private String local;   
-    
+    @Column(columnDefinition = "TEXT")
     private String descricao;
-    
-    private String avisos;
-    
+
+    @NotNull(message = "Data do evento é obrigatória")
+    @Column(name = "data_evento", nullable = false)
+    private LocalDateTime dataEvento;
+
+    @Column(length = 200)
+    private String local;
+
+    @Column(length = 100)
+    private String cidade;
+
+    @Column(length = 80)
+    private String pais = "Brasil";
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+
+    @Column(length = 100)
+    private String fotografo;
+
+    @Column(name = "criado_em", nullable = false, updatable = false)
+    private LocalDateTime criadoEm;
+
+    @PrePersist
+    public void prePersist() {
+        this.criadoEm = LocalDateTime.now();
+
+        if (this.pais == null || this.pais.isBlank()) {
+            this.pais = "Brasil";
+        }
+    }
+
     @OneToMany(
         mappedBy = "evento",
         cascade = CascadeType.ALL,
