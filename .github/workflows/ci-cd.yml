@@ -8,6 +8,7 @@ on:
 
 jobs:
   build-and-test:
+    name: Build, Test e Docker
     runs-on: ubuntu-latest
 
     services:
@@ -39,11 +40,23 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Esperar MySQL iniciar
+      - name: Aguardar MySQL iniciar
         run: sleep 20
 
       - name: Compilar e executar testes
-        run: mvn clean package
+        run: mvn clean verify
+        env:
+          SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/ps_project?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+          SPRING_DATASOURCE_USERNAME: root
+          SPRING_DATASOURCE_PASSWORD: root
+          API_SECURITY_TOKEN_SECRET: MinhaChaveSecretaSuperSegura2026!
+
+      - name: Publicar relatório de testes
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: backend/target/surefire-reports/
 
       - name: Build da imagem Docker
         run: docker build -t ps-backend:latest .
