@@ -4,6 +4,7 @@ import com.ps.backend.security.SecurityFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -24,6 +25,7 @@ import java.util.List;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+@Profile("prod")
 public class SecurityConfig {
 
     @Autowired
@@ -38,6 +40,7 @@ public class SecurityConfig {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/Home").permitAll()
                         .requestMatchers(HttpMethod.GET, "/eventos/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/eventos/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/eventos/**").hasRole("ADMIN")
