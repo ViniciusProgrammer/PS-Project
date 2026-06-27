@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Login | Athletica</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#eff4f9",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#d5dbdf",
+                        "on-secondary-container": "#5c6372",
+                        "primary-fixed": "#d4e3ff",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#fdfcff",
+                        "tertiary": "#4c5d74",
+                        "secondary-container": "#d9dff2",
+                        "on-secondary-fixed": "#151c29",
+                        "background": "#f5faff",
+                        "surface": "#f5faff",
+                        "secondary": "#575e6e",
+                        "surface-container-highest": "#dee3e8",
+                        "outline": "#717784",
+                        "surface-variant": "#dee3e8",
+                        "surface-container": "#e9eef3",
+                        "inverse-primary": "#a5c8ff",
+                        "on-tertiary-fixed": "#0a1c31",
+                        "inverse-surface": "#2b3135",
+                        "on-tertiary-fixed-variant": "#37485e",
+                        "outline-variant": "#c0c7d5",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#005faf",
+                        "tertiary-fixed": "#d3e4ff",
+                        "on-primary-fixed": "#001c3a",
+                        "surface-bright": "#f5faff",
+                        "on-surface": "#171c20",
+                        "secondary-fixed": "#dce2f5",
+                        "surface-white": "#FFFFFF",
+                        "inverse-on-surface": "#ecf1f6",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#65768e",
+                        "error-container": "#ffdad6",
+                        "on-background": "#171c20",
+                        "secondary-fixed-dim": "#c0c6d9",
+                        "on-secondary": "#ffffff",
+                        "deep-navy": "#1A1F29",
+                        "on-surface-variant": "#414753",
+                        "on-secondary-fixed-variant": "#404756",
+                        "on-primary-container": "#fefcff",
+                        "primary": "#005cab",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#0075d6",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#004786",
+                        "border-light": "#E2E8F0",
+                        "tertiary-fixed-dim": "#b6c8e3",
+                        "surface-container-high": "#e4e9ee",
+                        "primary-fixed-dim": "#a5c8ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "gutter": "16px",
+                        "container-max": "1280px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "xl": "48px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5faff;
+        }
+        .auth-card {
+            box-shadow: 0px 4px 20px rgba(40, 47, 61, 0.05);
+            border: 1px solid #E2E8F0;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center overflow-x-hidden">
+<div class="fixed inset-0 z-0">
+    <div class="w-full h-full bg-cover bg-center opacity-20 filter grayscale" data-alt="A sophisticated architectural photograph of a minimalist concrete and glass building at dawn. The lighting is soft and blue-toned, emphasizing sharp geometric lines and vast negative space. The overall atmosphere is quiet, professional, and high-end, mirroring a premium photography marketplace aesthetic with clean textures and a cold, modern color palette." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCmzzHuXAVTJO8AreBbLC9_9DxgBQFqJ8NMeq_LIJrUQgSxPTjGHyWYNSx7hjTMohaaY41hyIWclcPQKG8VKa86smR5CdY4FgDqWWNEdYpT2XEyRkiAPmz5PJtWH-F8RclZ7upf1w6FC02AD4pGli2wr7_Cbah5BB0SP-G5U2Y-IsftgC4MLg_JSWjHtad3JhXshnMSamVIX7Av0jiSoAPGyHaw-iow4atQeQdrbbnbR8Zma1XdXITtcA')">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-tr from-surface via-transparent to-surface-container-low"></div>
+</div>
+<main class="relative z-10 w-full max-w-container-max px-margin-mobile md:px-margin-desktop flex justify-center items-center py-xl">
+    <div class="flex flex-col md:flex-row w-full max-w-5xl bg-surface-white rounded-xl overflow-hidden auth-card">
+        <div class="hidden md:flex md:w-1/2 relative group">
+            <div class="absolute inset-0 bg-primary/10 z-10"></div>
+            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A breathtaking interior shot of a modern museum corridor featuring dramatic skylights and shadows. High-contrast architectural photography with a focus on symmetry and structural elegance. The image uses a palette of slate grey, bright white, and deep navy tones, creating an inspiring and reliable atmosphere for professional photographers and collectors." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDHgQAXErKnJ0odkEhh-cG4Zc5v29muVA8bVDfLR-ARKYiohr-3mSiVCO_L9TAa6DadeGzkZ3LQfLEyDVGvFkauOfw_h99-KhBOlBysSIN04QGADGb3CLMeNoadU8laqeJPt5whwouW9lTuxj7e_7JA9NrA6KT6SiZtGcP2ldrVet4jXKefOoWVLKt4QWbsKysA3iAaX3Jvl0SI9YELG-Nlr-7Hwiw8OnruyQALFkUj_O9HT6gq9mhJnQ')">
+            </div>
+            <div class="absolute bottom-0 left-0 p-lg z-20 bg-gradient-to-t from-deep-navy/80 to-transparent w-full">
+                <h2 class="font-headline-md text-headline-md text-surface-white mb-xs">Athletica</h2>
+                <p class="font-body-sm text-body-sm text-surface-container-highest opacity-90">Fotografia esportiva de alto nível que transforma performances inesquecíveis em memórias atemporais.</p>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2 p-lg md:p-xl flex flex-col justify-center">
+            <div class="mb-lg">
+                <div class="flex items-center gap-sm mb-md text-primary">
+                    <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">camera</span>
+                    <span class="font-headline-md text-headline-md font-bold tracking-tight">Athletica</span>
+                </div>
+                <h1 class="font-headline-sm text-headline-sm text-on-surface mb-xs">Seja muito Bem-Vindo(a)!</h1>
+                <p class="font-body-md text-body-md text-on-surface-variant">Acesse seu portfólio de fotografia e suas coleções</p>
+            </div>
+            <div class="grid grid-cols-2 gap-md mb-lg">
+                <button class="flex items-center justify-center gap-sm h-12 border border-border-light rounded-xl font-label-md text-label-md text-on-surface hover:bg-surface-container-low transition-colors active:scale-95 duration-200">
+                    <img alt="Google" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEHzS9reiqvoLwsFzX7K-dW2ICwgW-n25UniwynYxfZOSEHUBRgz4VWbh6Hjg0GWC3WCUkoa87xjGKpaxGXZC0asvR4aXthz-g-CSlho0BhywJnRIyYrlCHpMwUeX7JTWCmFaI-Sk8U5aUAyRBk9hxVzcy0FAoAt2IuHs48v--WixMxeatyPjLJ7GJUaBf9XkrUhUf_LCK_VGjMKZhrQZcFdwZVe5FFhQSZErFqq7-EueoSI8TndPvsQ"/>
+                    Google
+                </button>
+                <button class="flex items-center justify-center gap-sm h-12 border border-border-light rounded-xl font-label-md text-label-md text-on-surface hover:bg-surface-container-low transition-colors active:scale-95 duration-200">
+                    <span class="material-symbols-outlined text-xl text-deep-navy" style="font-variation-settings: 'FILL' 1;">apps</span>
+                    Apple
+                </button>
+            </div>
+            <div class="relative flex items-center mb-lg">
+                <div class="flex-grow border-t border-border-light"></div>
+                <span class="flex-shrink mx-md font-label-md text-label-md text-tertiary">ou entre com e-mail</span>
+                <div class="flex-grow border-t border-border-light"></div>
+            </div>
+            <form action="#" class="space-y-md">
+                <div>
+                    <label class="block font-label-bold text-label-bold text-on-surface-variant mb-xs" for="email">Endereço de Email</label>
+                    <input class="w-full h-12 px-md bg-surface-white border border-border-light rounded-xl focus:ring-2 focus:ring-primary focus:border-primary font-body-md text-body-md transition-all outline-none" id="email" placeholder="photographer@lensflow.com" type="email"/>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-xs">
+                        <label class="font-label-bold text-label-bold text-on-surface-variant" for="password">Senha</label>
+                        <a class="font-label-bold text-label-bold text-primary hover:underline" href="#">Esqueceu a senha?</a>
+                    </div>
+                    <div class="relative">
+                        <input class="w-full h-12 px-md bg-surface-white border border-border-light rounded-xl focus:ring-2 focus:ring-primary focus:border-primary font-body-md text-body-md transition-all outline-none" id="password" placeholder="••••••••" type="password"/>
+                        <button class="absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary" type="button">
+                            <span class="material-symbols-outlined text-xl">visibility</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex items-center gap-sm py-xs">
+                    <input class="w-5 h-5 rounded border-border-light text-primary focus:ring-primary" id="remember" type="checkbox"/>
+                    <label class="font-body-sm text-body-sm text-on-surface-variant" for="remember">Deixe-me logado por 30 dias!</label>
+                </div>
+                <button class="w-full h-12 bg-primary text-on-primary rounded-xl font-label-bold text-label-bold uppercase tracking-widest hover:bg-primary-container transition-all active:scale-[0.98] shadow-md hover:shadow-lg" type="submit">
+                    Entrar
+                </button>
+            </form>
+            <p class="mt-xl text-center font-body-md text-body-md text-on-surface-variant">
+                Não possui uma conta?
+                <a class="text-primary font-bold hover:underline" href="#">Junte-se ao Athletica</a>
+            </p>
+        </div>
+    </div>
+</main>
+<footer class="fixed bottom-md w-full px-margin-desktop flex justify-between items-center z-10 pointer-events-none">
+    <div class="pointer-events-auto flex gap-md">
+        <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Política e Privacidade</a>
+        <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Termos de Serviços</a>
+    </div>
+    <div class="pointer-events-auto font-label-md text-label-md text-on-surface-variant opacity-60">
+        © 2026 Ecommerce de Fotografias
+    </div>
+</footer>
+<script>
+    const toggleBtn = document.querySelector('button[type="button"]');
+    const passInput = document.getElementById('password');
+
+    toggleBtn.addEventListener('click', () => {
+        const type = passInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passInput.setAttribute('type', type);
+        const icon = toggleBtn.querySelector('span');
+        icon.textContent = type === 'password' ? 'visibility' : 'visibility_off';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        const moveX = (e.clientX - window.innerWidth / 2) * 0.005;
+        const moveY = (e.clientY - window.innerHeight / 2) * 0.005;
+        const heroBg = document.querySelector('.fixed.inset-0 .bg-cover');
+        if (heroBg) {
+            heroBg.style.transform = `scale(1.1) translate(${moveX}px, ${moveY}px)`;
+        }
+    });
+</script>
+</body></html>
