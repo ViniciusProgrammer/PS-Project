@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Atheltica | Galeria Premium em Fotografias</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#eff4f9",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#d5dbdf",
+                        "on-secondary-container": "#5c6372",
+                        "primary-fixed": "#d4e3ff",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#fdfcff",
+                        "tertiary": "#4c5d74",
+                        "secondary-container": "#d9dff2",
+                        "on-secondary-fixed": "#151c29",
+                        "background": "#f5faff",
+                        "surface": "#f5faff",
+                        "secondary": "#575e6e",
+                        "surface-container-highest": "#dee3e8",
+                        "outline": "#717784",
+                        "surface-variant": "#dee3e8",
+                        "surface-container": "#e9eef3",
+                        "inverse-primary": "#a5c8ff",
+                        "on-tertiary-fixed": "#0a1c31",
+                        "inverse-surface": "#2b3135",
+                        "on-tertiary-fixed-variant": "#37485e",
+                        "outline-variant": "#c0c7d5",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#005faf",
+                        "tertiary-fixed": "#d3e4ff",
+                        "on-primary-fixed": "#001c3a",
+                        "surface-bright": "#f5faff",
+                        "on-surface": "#171c20",
+                        "secondary-fixed": "#dce2f5",
+                        "surface-white": "#FFFFFF",
+                        "inverse-on-surface": "#ecf1f6",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#65768e",
+                        "error-container": "#ffdad6",
+                        "on-background": "#171c20",
+                        "secondary-fixed-dim": "#c0c6d9",
+                        "on-secondary": "#ffffff",
+                        "deep-navy": "#1A1F29",
+                        "on-surface-variant": "#414753",
+                        "on-secondary-fixed-variant": "#404756",
+                        "on-primary-container": "#fefcff",
+                        "primary": "#005cab",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#0075d6",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#004786",
+                        "border-light": "#E2E8F0",
+                        "tertiary-fixed-dim": "#b6c8e3",
+                        "surface-container-high": "#e4e9ee",
+                        "primary-fixed-dim": "#a5c8ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "gutter": "16px",
+                        "container-max": "1280px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "xl": "48px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .gallery-card:hover .card-overlay {
+            opacity: 1;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .filter-chip-active {
+            background-color: #005cab;
+            color: #ffffff;
+        }
+        .sticky-sidebar {
+            top: 80px;
+            height: calc(100vh - 100px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-on-background border-b border-border-light dark:border-outline-variant h-16">
+    <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-full w-full max-w-container-max mx-auto">
+        <div class="flex items-center gap-sm">
+            <span class="material-symbols-outlined text-primary dark:text-primary-fixed" data-icon="camera">camera</span>
+            <h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">Athletica</h1>
+        </div>
+        <nav class="hidden md:flex items-center gap-lg">
+            <a class="text-primary dark:text-primary-fixed font-bold font-label-md text-label-md hover:opacity-80 transition-opacity" href="#">Explorar</a>
+            <a class="text-on-surface-variant dark:text-surface-variant font-label-md text-label-md hover:opacity-80 transition-opacity" href="#">Buscar</a>
+            <a class="text-on-surface-variant dark:text-surface-variant font-label-md text-label-md hover:opacity-80 transition-opacity" href="#">Portfolio</a>
+            <a class="text-on-surface-variant dark:text-surface-variant font-label-md text-label-md hover:opacity-80 transition-opacity" href="#">Cards</a>
+        </nav>
+        <div class="flex items-center gap-md">
+            <button class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity p-2" data-icon="shopping_cart">🛒</button>
+            <div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+                <img class="w-full h-full object-cover" data-alt="Close-up professional portrait of a photography curator in a high-end minimalist office. The individual has a sophisticated look, with soft natural light coming from a large window. The background is blurred to maintain focus on the subject. The color grading is clean and airy, matching the modern gallery aesthetic of the LensFlow brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB9XitpYt3qSqOP1iPJFJJSYrd4Ofo7hxMDTCSaCMRwGJotebS3xIlK5CJ-XmSyyCJF-7K-2FDFBkquXmizbaOBegY-n0hMnw-9uyBhfHPX8fGebcMHXoPrTVuhbsqwNbJ_WbA4ljDovZgV1-q-T2VR9M348a6zDSLzKf1JYokXwWJJHM5fhajI1QMaMKMP2Yhp0XCLbENrrrrner6JItGVNrKSy74SSQaJbW9vS5U947R5oPJLh3CUg"/>
+            </div>
+        </div>
+    </div>
+</header>
+<main class="pt-16 pb-xl max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+    <section class="py-xl">
+        <div class="relative max-w-3xl mx-auto group">
+            <div class="absolute inset-y-0 left-0 pl-md flex items-center pointer-events-none">
+                <span class="material-symbols-outlined text-outline" data-icon="search">Buscar</span>
+            </div>
+            <input class="block w-full pl-xl pr-md py-lg bg-surface-white border border-border-light rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 font-body-lg text-body-lg shadow-sm group-hover:shadow-md" placeholder="" type="text"/>
+            <div class="absolute inset-y-0 right-0 pr-sm flex items-center">
+                <button class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label-bold text-label-bold hover:opacity-90 transition-all active:scale-95">
+                    Localizar ativos
+                </button>
+            </div>
+        </div>
+        <div class="flex flex-wrap justify-center gap-sm mt-md">
+            <span class="text-on-surface-variant font-label-md text-label-md">Em Alta:</span>
+            <a class="text-primary font-label-md text-label-md hover:underline underline-offset-4 transition-all" href="#">Retratos Cinematográficos</a>
+            <span class="text-outline text-xs">•</span>
+            <a class="text-primary font-label-md text-label-md hover:underline underline-offset-4 transition-all" href="#">Arquitetura Minimalista</a>
+            <span class="text-outline text-xs">•</span>
+            <a class="text-primary font-label-md text-label-md hover:underline underline-offset-4 transition-all" href="#">Paisagens aéreas</a>
+        </div>
+    </section>
+    <div class="flex flex-col md:flex-row gap-xl">
+        <aside class="w-full md:w-72 flex-shrink-0">
+            <div class="md:sticky sticky-sidebar space-y-xl overflow-y-auto hide-scrollbar">
+                <div>
+                    <h3 class="font-headline-sm text-headline-sm mb-md text-on-surface">Categories</h3>
+                    <div class="flex flex-col gap-sm">
+                        <label class="flex items-center gap-sm cursor-pointer group">
+                            <input checked="" class="rounded border-outline-variant text-primary focus:ring-primary transition-colors h-5 w-5" type="checkbox"/>
+                            <span class="text-body-md font-body-md text-on-surface-variant group-hover:text-primary transition-colors">Paisagem</span>
+                        </label>
+                        <label class="flex items-center gap-sm cursor-pointer group">
+                            <input class="rounded border-outline-variant text-primary focus:ring-primary transition-colors h-5 w-5" type="checkbox"/>
+                            <span class="text-body-md font-body-md text-on-surface-variant group-hover:text-primary transition-colors">Retrato</span>
+                        </label>
+                        <label class="flex items-center gap-sm cursor-pointer group">
+                            <input class="rounded border-outline-variant text-primary focus:ring-primary transition-colors h-5 w-5" type="checkbox"/>
+                            <span class="text-body-md font-body-md text-on-surface-variant group-hover:text-primary transition-colors">Fotografia de rua</span>
+                        </label>
+                        <label class="flex items-center gap-sm cursor-pointer group">
+                            <input class="rounded border-outline-variant text-primary focus:ring-primary transition-colors h-5 w-5" type="checkbox"/>
+                            <span class="text-body-md font-body-md text-on-surface-variant group-hover:text-primary transition-colors">Macro</span>
+                        </label>
+                        <label class="flex items-center gap-sm cursor-pointer group">
+                            <input class="rounded border-outline-variant text-primary focus:ring-primary transition-colors h-5 w-5" type="checkbox"/>
+                            <span class="text-body-md font-body-md text-on-surface-variant group-hover:text-primary transition-colors">Editorial</span>
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-headline-sm text-headline-sm mb-md text-on-surface">Faixa de preço</h3>
+                    <div class="px-sm">
+                        <input class="w-full h-2 bg-surface-container-high rounded-lg appearance-none cursor-pointer accent-primary" type="range"/>
+                        <div class="flex justify-between mt-sm">
+                            <span class="text-label-md font-label-md text-outline">$10</span>
+                            <span class="text-label-md font-label-md text-on-surface-variant font-bold">$1,500+</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-headline-sm text-headline-sm mb-md text-on-surface">Orientação</h3>
+                    <div class="grid grid-cols-3 gap-xs">
+                        <button class="flex flex-col items-center justify-center p-sm border border-border-light rounded-lg hover:border-primary transition-colors">
+                            <span class="material-symbols-outlined text-on-surface-variant mb-xs" data-icon="rectangle">rectangle</span>
+                            <span class="text-[10px] uppercase font-bold text-outline">Horizontal</span>
+                        </button>
+                        <button class="flex flex-col items-center justify-center p-sm border border-primary bg-primary-fixed rounded-lg text-primary transition-colors">
+                            <span class="material-symbols-outlined mb-xs" data-icon="rectangle" style="transform: rotate(90deg)">rectangle</span>
+                            <span class="text-[10px] uppercase font-bold">Vertical</span>
+                        </button>
+                        <button class="flex flex-col items-center justify-center p-sm border border-border-light rounded-lg hover:border-primary transition-colors">
+                            <span class="material-symbols-outlined text-on-surface-variant mb-xs" data-icon="crop_square">crop_square</span>
+                            <span class="text-[10px] uppercase font-bold text-outline">Quadrada</span>
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-headline-sm text-headline-sm mb-md text-on-surface">Resolução</h3>
+                    <div class="flex flex-col gap-sm">
+                        <button class="text-left py-sm px-md border border-border-light rounded-lg text-body-md font-body-md text-on-surface-variant hover:bg-surface-container-low transition-colors">
+                            4K+ Ultra Alta Resolução
+                        </button>
+                        <button class="text-left py-sm px-md border border-primary text-primary rounded-lg text-body-md font-body-md font-bold bg-primary-fixed transition-colors">
+                            Padrão HD
+                        </button>
+                        <button class="text-left py-sm px-md border border-border-light rounded-lg text-body-md font-body-md text-on-surface-variant hover:bg-surface-container-low transition-colors">
+                            Otimizado para redes sociais
+                        </button>
+                    </div>
+                </div>
+                <button class="w-full py-md border border-outline text-on-surface-variant rounded-xl font-label-bold text-label-bold hover:bg-surface-container-highest transition-all">
+                    Resetar Todos os Filtros
+                </button>
+            </div>
+        </aside>
+        <section class="flex-1">
+            <div class="flex justify-between items-end mb-lg">
+                <h2 class="font-headline-md text-headline-md text-on-surface">2.481 resultados encontrados</h2>
+                <div class="flex items-center gap-sm">
+                    <span class="text-label-md font-label-md text-outline">Ordenar por:</span>
+                    <select class="border-none bg-transparent font-label-bold text-label-bold text-primary focus:ring-0 cursor-pointer">
+                        <option>Mais Populares</option>
+                        <option>Newest Arrivals</option>
+                        <option>Preço: Menor para o Maior</option>
+                        <option>Price: Maior para o Menor</option>
+                    </select>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+                <div class="gallery-card relative group aspect-[4/5] bg-surface-container-lowest overflow-hidden border border-border-light rounded-xl cursor-zoom-in">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A cinematic portrait of a young woman with warm golden hour lighting reflecting off her skin. The background features a soft, blurred urban cityscape with bokeh lights. The overall aesthetic is professional, high-end editorial photography with a soft blue and orange color palette. Minimalist and clean composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcKCEk-uZHrgCpoBw0PQ_mNO2iTNs81HlU6CGhxpYNodKBTTahCr0IZnEL3JvExM3o30gKn7MlDzSQmkGoAVR2wFuXKkiRi-ktLOniyA87WneDfq92G01JpMAZA7LQjWKCTbzv0thtPj10SR8K37O_zfAritCn6W7r1QZ93VjsOxxX401SkAnp6Hj4q7tFffya9yLyZcMBpraEcQpYsJpMXBsq66tblvSyPN8UICItj-KuE0e1bU16IQ"/>
+                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-lg text-white">
+                        <p class="text-label-bold font-label-bold mb-xs uppercase tracking-widest text-primary-fixed">Retrato</p>
+                        <h4 class="font-headline-sm text-headline-sm mb-xs">Reflexo Urbano</h4>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center gap-sm">
+                                <div class="w-6 h-6 rounded-full bg-outline-variant"></div>
+                                <span class="text-body-sm font-body-sm">Elena Voss</span>
+                            </div>
+                            <span class="font-label-bold text-label-bold bg-primary px-sm py-xs rounded">R$85.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-card relative group aspect-[4/5] bg-surface-container-lowest overflow-hidden border border-border-light rounded-xl cursor-zoom-in">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Breathtaking wide-angle landscape of jagged mountain peaks at sunrise. Mist flows through the valley below as the peaks catch the first light of dawn in shades of pink and purple. A pristine, alpine lake reflects the sky in the foreground. High-resolution, sharp detail, cold blue tones with warm highlights. Professional landscape photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4BlmtyS9yrsX2F63rBqI_6xPQX3Eeye3OMk664d1-UntJt1kkNEzMQJdbH-9RZd_kBoOvVfG3OcDr9LmdXRgwTlmzKeOm_yrMRzTR-wDzY5bnyjSIjks2tou1PKaJ2XwSkOexXECJ7J0B1xbfkbPd9i5Oa56sP4r_uY_kDQVtRyA6MHIb0K8ngF-yPFurt0CUeVfYek1ogW6QZp30yP9WQp76IKgcOCEK-W7XsZqUgiQRMu_SzMg9dw"/>
+                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-lg text-white">
+                        <p class="text-label-bold font-label-bold mb-xs uppercase tracking-widest text-primary-fixed">Paisagem</p>
+                        <h4 class="font-headline-sm text-headline-sm mb-xs">Manhã Alpina</h4>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center gap-sm">
+                                <div class="w-6 h-6 rounded-full bg-outline-variant"></div>
+                                <span class="text-body-sm font-body-sm">Marcus Thorne</span>
+                            </div>
+                            <span class="font-label-bold text-label-bold bg-primary px-sm py-xs rounded">R$120.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-card relative group aspect-[4/5] bg-surface-container-lowest overflow-hidden border border-border-light rounded-xl cursor-zoom-in">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Abstract macro shot of architectural lines in a modern glass and steel building. The perspective is looking upwards, creating a dizzying array of geometric shapes and reflections. The color palette is strictly cool blues and deep blacks. High-performance, clean aesthetic. Sharp focus on textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhoRnV_nelP36S__AqMFsu4r9ytclCSR3XRtcgkx0dHPHBdKTfMvmq_Lv8_lYq7qZoFfZamAICBwhxIZI0J7BUC1B17bT4R3tzOpQWaEVd6SXdVeATgjKcFQAh3ql3qObvEPZVs59ylKno_jNIJcc63DD9uRY90hwatpgaiRf7peqFdwXenj78nuqnZcWs1YKxnPDlFdYjtLGZcjGq34xt0-SEEAWqL2gi59AL48Y-jaBcyFiD6cNjZw"/>
+                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-lg text-white">
+                        <p class="text-label-bold font-label-bold mb-xs uppercase tracking-widest text-primary-fixed">Arquitetural</p>
+                        <h4 class="font-headline-sm text-headline-sm mb-xs">Geometria do Aço</h4>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center gap-sm">
+                                <div class="w-6 h-6 rounded-full bg-outline-variant"></div>
+                                <span class="text-body-sm font-body-sm">Sarah Chen</span>
+                            </div>
+                            <span class="font-label-bold text-label-bold bg-primary px-sm py-xs rounded">R$95.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-card relative group aspect-[4/5] bg-surface-container-lowest overflow-hidden border border-border-light rounded-xl cursor-zoom-in">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A moody, high-contrast street photograph from a rainy night in Tokyo. Neon signs in vibrant red and blue reflect in the puddles on the asphalt. A solitary figure with an umbrella walks across a crosswalk. The mood is cinematic, mysterious, and modern. Sharp focus on the water droplets and reflections." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjOl5LoSCg6kzKOcb1ELLov_9KkonKKByeQ7HjyYhsVWsgBd1iQZW5JP-QkZkhm3tBJqQc2k_t3wiQX5WdTTejMiPpwuvy_62wYF-VQOAMEeaSx2OSyJObvYkyOuD5dYBgqz1iNzrU887A9Wap_M-2AuOQN4cnKT_wfMWD2iC_-EJLRFj8A0O4Em19LI5POLk9_nL3U2JkoMjBe4j_Y3fLBUnjsy6iBD0LxPGJWF5PNleoNHJikN8tVg"/>
+                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-lg text-white">
+                        <p class="text-label-bold font-label-bold mb-xs uppercase tracking-widest text-primary-fixed">Rua</p>
+                        <h4 class="font-headline-sm text-headline-sm mb-xs">Neon Rain</h4>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center gap-sm">
+                                <div class="w-6 h-6 rounded-full bg-outline-variant"></div>
+                                <span class="text-body-sm font-body-sm">Kenji Saito</span>
+                            </div>
+                            <span class="font-label-bold text-label-bold bg-primary px-sm py-xs rounded">R$75.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-card relative group aspect-[4/5] bg-surface-container-lowest overflow-hidden border border-border-light rounded-xl cursor-zoom-in">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Minimalist fine art photograph of a single white lily against a pure black background. The lighting is soft and directional, highlighting the delicate texture of the petals. Sophisticated, elegant, and peaceful mood. High-key lighting detail with deep shadows. Symmetrical and centered composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBig8tvayT89W__TjkGDGMrFk6Zkn_waLaDJbEV1LgWvtYeet2zuwbzpJmq9iP-bB0siRC4EbIMa41B1eqOjPQC0tWIH0I1sVAneVZw_1CfoSHh664oT7zywbxLz-rlqv1Sq0fOj0TrA9YNOR_nrY0fmCqiAu0XmSK2qYKwCyPV9YITVEF9l_jcIY5v2AYEeYuVU7YtSh7l-4MZeo7yCTn1NZqymw1D_yx-dkkHVMKd2yFDYqMIE8c21g"/>
+                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-lg text-white">
+                        <p class="text-label-bold font-label-bold mb-xs uppercase tracking-widest text-primary-fixed">Belas-artes</p>
+                        <h4 class="font-headline-sm text-headline-sm mb-xs">Pureza</h4>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center gap-sm">
+                                <div class="w-6 h-6 rounded-full bg-outline-variant"></div>
+                                <span class="text-body-sm font-body-sm">Julia Frost</span>
+                            </div>
+                            <span class="font-label-bold text-label-bold bg-primary px-sm py-xs rounded">R$250.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-card relative group aspect-[4/5] bg-surface-container-lowest overflow-hidden border border-border-light rounded-xl cursor-zoom-in">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Dynamic action shot of a professional surfer riding a massive, turquoise tube wave. Spray from the ocean catches the light, creating a sense of immense power and movement. The lighting is bright and summery. High-shutter speed photography capturing every detail of the water. Deep blues and whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrKmi2LdLL7Oauphw3DW56n49wIqt-x0_rVmsULECAX4WQGPeWLiN8hP-Wb__jwXlY5VWec_5iff55UpfJcT7Plgq07hYpIWyV7EW5ct3-I5EKHgrDWHAWZgENDFuV1wHxdH4F1nTbXLJsnI7AruePJA6r6wu9-rW_lFmx_U1XlVzvw9xbpR3xsXXwjUEZ-DQEzKROy5wHa9lRyW4YYWzY07N3d8XjDqg5wQbjtygAlB5Gv5GaAZ_HTQ"/>
+                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-lg text-white">
+                        <p class="text-label-bold font-label-bold mb-xs uppercase tracking-widest text-primary-fixed">Esporte</p>
+                        <h4 class="font-headline-sm text-headline-sm mb-xs">Pacific Pulse</h4>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center gap-sm">
+                                <div class="w-6 h-6 rounded-full bg-outline-variant"></div>
+                                <span class="text-body-sm font-body-sm">Dave Shore</span>
+                            </div>
+                            <span class="font-label-bold text-label-bold bg-primary px-sm py-xs rounded">R$110.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-xl flex justify-center gap-sm">
+                <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-light text-on-surface-variant hover:bg-surface-container-low transition-colors">
+                    <span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+                </button>
+                <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-on-primary font-label-bold text-label-bold">1</button>
+                <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-light text-on-surface-variant hover:bg-surface-container-low transition-colors font-label-bold text-label-bold">2</button>
+                <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-light text-on-surface-variant hover:bg-surface-container-low transition-colors font-label-bold text-label-bold">3</button>
+                <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-light text-on-surface-variant hover:bg-surface-container-low transition-colors">
+                    <span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span>
+                </button>
+                <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-light text-on-surface-variant hover:bg-surface-container-low transition-colors font-label-bold text-label-bold">12</button>
+                <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-light text-on-surface-variant hover:bg-surface-container-low transition-colors">
+                    <span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+                </button>
+            </div>
+        </section>
+    </div>
+</main>
+<footer class="bg-surface-container-lowest border-t border-border-light py-xl mt-xl">
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-xl">
+        <div class="col-span-1 md:col-span-1">
+            <div class="flex items-center gap-sm mb-md">
+                <span class="material-symbols-outlined text-primary" data-icon="camera">camera</span>
+                <h1 class="font-headline-sm text-headline-sm font-bold text-primary">Athletica</h1>
+            </div>
+            <p class="text-body-sm font-body-sm text-on-surface-variant max-w-xs">
+                O principal marketplace do mundo de recursos fotográficos de alto padrão e licenciamento com curadoria.
+            </p>
+        </div>
+        <div class="space-y-sm">
+            <h4 class="font-label-bold text-label-bold text-on-surface uppercase tracking-wider">Explorar</h4>
+            <nav class="flex flex-col gap-xs text-body-sm font-body-sm text-on-surface-variant">
+                <a class="hover:text-primary transition-colors" href="#">Coleções</a>
+                <a class="hover:text-primary transition-colors" href="#">Em alta agora</a>
+                <a class="hover:text-primary transition-colors" href="#">Escolha do Editor</a>
+            </nav>
+        </div>
+        <div class="space-y-sm">
+            <h4 class="font-label-bold text-label-bold text-on-surface uppercase tracking-wider">License</h4>
+            <nav class="flex flex-col gap-xs text-body-sm font-body-sm text-on-surface-variant">
+                <a class="hover:text-primary transition-colors" href="#">Termos de Uso</a>
+                <a class="hover:text-primary transition-colors" href="#">Direitos Comerciais</a>
+                    <a class="hover:text-primary transition-colors" href="#">Uso editorial</a>
+            </nav>
+        </div>
+        <div class="space-y-sm">
+            <h4 class="font-label-bold text-label-bold text-on-surface uppercase tracking-wider">Suporte</h4>
+            <nav class="flex flex-col gap-xs text-body-sm font-body-sm text-on-surface-variant">
+                <a class="hover:text-primary transition-colors" href="#">Central de Ajuda</a>
+                <a class="hover:text-primary transition-colors" href="#">Venda o seu trabalho</a>
+                <a class="hover:text-primary transition-colors" href="#">Documentação da API</a>
+            </nav>
+        </div>
+    </div>
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mt-xl pt-lg border-t border-border-light flex flex-col md:flex-row justify-between items-center text-label-md font-label-md text-outline">
+        <p>Todos os direitos reservados de Athletica Fotografia Marketplace 2026© </p>
+        <div class="flex gap-lg mt-md md:mt-0">
+            <a class="hover:text-primary transition-colors" href="#">Política e Privacidade</a>
+            <a class="hover:text-primary transition-colors" href="#">Termos de Serviços</a>
+            <a class="hover:text-primary transition-colors" href="#">Configuração de Cookies</a>
+        </div>
+    </div>
+</footer>
+<button class="fixed bottom-lg right-lg w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40">
+    <span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+</button>
+<script>
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', (e) => {
+            const span = e.target.nextElementSibling;
+            if(e.target.checked) {
+                span.classList.add('text-primary', 'font-bold');
+            } else {
+                span.classList.remove('text-primary', 'font-bold');
+            }
+        });
+    });
+    const searchInput = document.querySelector('input[type="text"]');
+    searchInput.addEventListener('focus', () => {
+        searchInput.parentElement.classList.add('scale-[1.01]');
+    });
+    searchInput.addEventListener('blur', () => {
+        searchInput.parentElement.classList.remove('scale-[1.01]');
+    });
+</script>
+</body></html>
