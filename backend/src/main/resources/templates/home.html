@@ -1,17 +1,449 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>PS Project</title>
+
+<html class="scroll-smooth" lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>LensFlow | Professional Photography Marketplace</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .image-hover-zoom {
+            overflow: hidden;
+        }
+        .image-hover-zoom img {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .image-hover-zoom:hover img {
+            transform: scale(1.05);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#eff4f9",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#d5dbdf",
+                        "on-secondary-container": "#5c6372",
+                        "primary-fixed": "#d4e3ff",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#fdfcff",
+                        "tertiary": "#4c5d74",
+                        "secondary-container": "#d9dff2",
+                        "on-secondary-fixed": "#151c29",
+                        "background": "#f5faff",
+                        "surface": "#f5faff",
+                        "secondary": "#575e6e",
+                        "surface-container-highest": "#dee3e8",
+                        "outline": "#717784",
+                        "surface-variant": "#dee3e8",
+                        "surface-container": "#e9eef3",
+                        "inverse-primary": "#a5c8ff",
+                        "on-tertiary-fixed": "#0a1c31",
+                        "inverse-surface": "#2b3135",
+                        "on-tertiary-fixed-variant": "#37485e",
+                        "outline-variant": "#c0c7d5",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#005faf",
+                        "tertiary-fixed": "#d3e4ff",
+                        "on-primary-fixed": "#001c3a",
+                        "surface-bright": "#f5faff",
+                        "on-surface": "#171c20",
+                        "secondary-fixed": "#dce2f5",
+                        "surface-white": "#FFFFFF",
+                        "inverse-on-surface": "#ecf1f6",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#65768e",
+                        "error-container": "#ffdad6",
+                        "on-background": "#171c20",
+                        "secondary-fixed-dim": "#c0c6d9",
+                        "on-secondary": "#ffffff",
+                        "deep-navy": "#1A1F29",
+                        "on-surface-variant": "#414753",
+                        "on-secondary-fixed-variant": "#404756",
+                        "on-primary-container": "#fefcff",
+                        "primary": "#005cab",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#0075d6",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#004786",
+                        "border-light": "#E2E8F0",
+                        "tertiary-fixed-dim": "#b6c8e3",
+                        "surface-container-high": "#e4e9ee",
+                        "primary-fixed-dim": "#a5c8ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "gutter": "16px",
+                        "container-max": "1280px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "xl": "48px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
 </head>
-<body>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed">
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-border-light h-16">
+    <div class="flex justify-between items-center px-margin-desktop h-16 w-full max-w-container-max mx-auto">
+        <div class="flex items-center gap-sm">
+            <span class="material-symbols-outlined text-primary text-3xl" data-icon="camera">camera</span>
+            <h1 class="font-headline-md text-headline-md font-bold text-primary">Athletica</h1>
+        </div>
+        <nav class="hidden md:flex items-center gap-xl">
+            <a class="text-primary font-bold transition-opacity hover:opacity-80" href="#">Explorar</a>
+            <a class="text-on-surface-variant transition-opacity hover:opacity-80" href="#">Buscar</a>
+            <a class="text-on-surface-variant transition-opacity hover:opacity-80" href="#">Portfolio</a>
+            <a class="text-on-surface-variant transition-opacity hover:opacity-80" href="#">Cards</a>
+        </nav>
+        <div class="flex items-center gap-md">
+            <button class="p-2 text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95">
+                <span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+            </button>
+            <button class="bg-primary text-on-primary px-lg py-2 rounded-full font-label-bold text-label-bold hover:opacity-90 transition-opacity active:scale-95">
+                Participe do marketplace
+            </button>
+        </div>
+    </div>
+</header>
+<main class="pt-16">
+    <section class="relative min-h-[921px] flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent z-10"></div>
+            <img class="w-full h-full object-cover" data-alt="A cinematic, ultra-high-resolution photograph of a rugged mountain range at dawn, with golden sunlight catching the peaks and deep blue shadows in the valleys. The composition is professional and expansive, showcasing the power of high-end landscape photography. The lighting is ethereal and crisp, evoking a sense of premium quality and professional artistry for a high-end photography marketplace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyGzRV3bfXsdFelZogMsI-rc_O0FHFXw_rcIQJLRtvFDNbk43VzaMhXTvlStXPg-BtHKQCuLAZ4gR6vSObsIhVXIJoC4tQoJzYE7Qrq7Zga5k7YB2OemUiHJlDRgXd6VwKJXLF4RxgstyOOUDlctOfu6Y9kfxvMOnk63C14WKvnRnIkZk17GN6aiOJa4GtcTFQoyzU7zWqPP59ekCuctJETWXc2GX3JopOVs_PQBPdaHONQPQ49TLLHw"/>
+        </div>
+        <div class="container mx-auto px-margin-desktop relative z-20">
+            <div class="max-w-2xl">
+                <span class="inline-block bg-primary-fixed text-on-primary-fixed px-md py-1 rounded-full text-label-bold font-label-bold mb-md uppercase tracking-wider">Faça mais com o nosso plano ultimate</span>
+                <h2 class="font-display-lg text-display-lg text-on-surface mb-md">Armações premium para os visionários de amanhã</h2>
+                <p class="font-body-lg text-body-lg text-on-surface-variant mb-xl leading-relaxed">
+                    A Athletica é o principal marketplace do Brasil para fotografia de alta fidelidade. Conectamos criadores de elite a colecionadores exigentes que valorizam perspectivas originais.
+                </p>
+                <div class="flex gap-md">
+                    <button class="bg-primary text-on-primary px-xl py-lg rounded-full font-label-bold text-label-bold hover:opacity-90 transition-all flex items-center gap-sm shadow-lg shadow-primary/20">
+                        Explorar Coleções <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+                    </button>
+                    <button class="bg-surface-white border border-primary text-primary px-xl py-lg rounded-full font-label-bold text-label-bold hover:bg-primary-fixed transition-all">
+                        Submeta o seu Portfolio
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-float text-on-surface-variant/40">
+            <span class="material-symbols-outlined text-4xl" data-icon="expand_more">expand_more</span>
+        </div>
+    </section>
+    <section class="py-xl bg-surface-container-lowest">
+        <div class="container mx-auto px-margin-desktop">
+            <div class="text-center max-w-3xl mx-auto mb-xl">
+                <h3 class="font-headline-md text-headline-md text-on-surface mb-sm">Projetado para a excelência</h3>
+                <p class="text-on-surface-variant">Um ecossistema de fotografia construído com base na confiança, na transparência e na precisão técnica.</p>
+            </div>
+            <div class="grid grid-cols-12 gap-md auto-rows-[240px]">
+                <div class="col-span-12 md:col-span-8 glass-card border border-border-light rounded-xl p-xl relative overflow-hidden group">
+                    <div class="relative z-10 h-full flex flex-col justify-end">
+                        <span class="material-symbols-outlined text-primary text-4xl mb-md" data-icon="verified">verified</span>
+                        <h4 class="font-headline-sm text-headline-sm text-on-surface mb-xs">Verificação do Coletor</h4>
+                        <p class="text-on-surface-variant max-w-md">Cada imagem tem seus metadados RAW originais verificados, garantindo que você adquira um pedaço da história profissional autêntica, com total clareza quanto ao licenciamento.</p>
+                    </div>
+                    <div class="absolute top-0 right-0 w-1/2 h-full opacity-10 group-hover:opacity-20 transition-opacity">
+                        <span class="material-symbols-outlined text-[200px] absolute -right-10 -top-10 rotate-12" data-icon="workspace_premium">workspace_premium</span>
+                    </div>
+                </div>
+                <div class="col-span-12 md:col-span-4 bg-primary rounded-xl p-xl flex flex-col justify-between text-on-primary shadow-xl shadow-primary/10">
+                    <div class="flex justify-between items-start">
+                        <span class="material-symbols-outlined text-4xl" data-icon="payments">payments</span>
+                        <span class="bg-on-primary/20 px-sm py-xs rounded text-label-md font-label-bold">Desconto de 15%</span>
+                    </div>
+                    <div>
+                        <h4 class="font-headline-sm text-headline-sm mb-xs">Receita do Criador</h4>
+                        <p class="text-on-primary/80">A estrutura de royalties mais favorável aos criadores do setor, porque os visionários merecem a maior parte.</p>
+                    </div>
+                </div>
+                <div class="col-span-12 md:col-span-4 bg-deep-navy rounded-xl p-xl flex flex-col justify-center text-surface-white">
+                    <span class="material-symbols-outlined text-primary text-4xl mb-md" data-icon="high_quality">high_quality</span>
+                    <h4 class="font-headline-sm text-headline-sm mb-xs">Ultra fidelidade de detalhes</h4>
+                    <p class="text-surface-variant/70 text-body-sm">Entrega sem compressão e sem perda de dados para impressão de arte de grande formato e displays digitais</p>
+                </div>
+                <div class="col-span-12 md:col-span-8 border border-border-light rounded-xl p-xl flex flex-col justify-center bg-surface-container-low group overflow-hidden">
+                    <div class="flex items-center gap-xl">
+                        <div class="flex-1">
+                            <h4 class="font-headline-sm text-headline-sm text-on-surface mb-xs">Licenciamento Simplificado</h4>
+                            <p class="text-on-surface-variant">Três níveis claros. Um clique. Direitos de uso global, sem o juridiquês complexo ou taxas de renovação ocultas.</p>
+                        </div>
+                        <div class="flex gap-md">
+                            <div class="w-12 h-12 rounded-full border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+                            </div>
+                            <div class="w-12 h-12 rounded-full border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform delay-75">
+                                <span class="material-symbols-outlined" data-icon="description">Detalhes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-xl bg-surface">
+        <div class="container mx-auto px-margin-desktop">
+            <div class="flex justify-between items-end mb-xl">
+                <div>
+                    <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Coleções em Destaque</h3>
+                    <p class="text-on-surface-variant">Destaques selecionados da nossa rede global de fotógrafos premiados</p>
+                </div>
+                <button class="flex items-center gap-xs text-primary font-label-bold text-label-bold group">
+                    Ver todas as coleções <span class="material-symbols-outlined transition-transform group-hover:translate-x-1" data-icon="chevron_right">chevron_right</span>
+                </button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+                <article class="group">
+                    <div class="image-hover-zoom aspect-[4/5] rounded-xl mb-md bg-surface-dim relative">
+                        <img class="w-full h-full object-cover" data-alt="A minimalist architectural photograph of a modern art museum in Scandinavia, featuring clean lines, brutalist concrete textures, and dramatic shadows cast by a low afternoon sun. The scene is tranquil and sophisticated, perfectly aligned with a professional design aesthetic and corporate minimalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANH7ChwOT2VpfTAq6fPlrWQmIdsjWTDUUJleKrVZ22DYHuS_6D0GX3hnSyJ7DxvvK_5jdq1aPnSdR7P-cUAVnxKaZEJdYh5L2qInH1a8gJAazjQOWhEp_gwco1gM5aiIIHaKbIqDM_N8fVm-LVA8DO6ZqU_4crdYsurkRB8v6YyYAf_TYUPehe2Pf8kJ4Z-kGWxKscqtZcHU2XpQh6TlBicB9gtUBC-3I9lsiohz-s9gR-DhiVgdoFVw"/>
+                        <div class="absolute bottom-4 left-4 right-4 p-md glass-card rounded-lg opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
+                            <div class="flex justify-between items-center">
+                                <span class="text-label-bold font-label-bold text-on-surface">64 Imagens</span>
+                                <span class="bg-primary text-on-primary px-sm py-1 rounded text-[10px] font-bold">EXCLUSIVO</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h5 class="font-headline-sm text-headline-sm text-on-surface">Geometria Nórdica</h5>
+                            <p class="text-on-surface-variant text-body-sm">Arquitetura &amp; Urbanismo</p>
+                        </div>
+                        <div class="flex items-center gap-xs">
+                            <div class="w-8 h-8 rounded-full bg-surface-dim overflow-hidden border border-surface-white">
+                                <img class="w-full h-full object-cover" data-alt="A professional headshot of a photographer, styled as a minimalist portrait with neutral lighting. The background is a clean, out-of-focus studio setting in soft grays. The photographer is wearing a charcoal-colored designer turtleneck, reflecting a high-end, sophisticated professional brand persona." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1EqiRwTsgQEVzIX2HqMKg1pFlQp6bQXt4xFJWpu4AFMqKpdD94dNntACrxCk0MlpClXaC0W0xkhgYQZ-QZWsR25QCSQ6sPmoMGLkk5MScfAO7zAQH9IKxDZix4lXYXgnpdsMdN9cIF4TQ4ck1sP7DSMfY4CyT4Ot9zgirHdZWXaM7Y90uirLFk0sXcMVSGgob76_vs9iakrnQYjhj0RuP2CTpWEOnrO6hRTFt9HTzOyXAPNxxDNMxRA"/>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="group">
+                    <div class="image-hover-zoom aspect-[4/5] rounded-xl mb-md bg-surface-dim relative">
+                        <img class="w-full h-full object-cover" data-alt="An ethereal aerial photograph of deep turquoise ocean waves crashing against a jet-black volcanic sand beach. The foam creates intricate white lace patterns on the dark shore. The perspective is top-down, highlighting organic shapes and vibrant natural colors. High contrast, high-end fine art aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFsmGLauhm3n9LZTQ_KrtOzCuC_gYro6KZMf-AFWY7-oABH2lsT0uaWccGZHEqCBjuXIX8DctXyGwDE3sa0E8vr7bIeTHV9I7ITEtf94zJoiQrNw9HSlqTdqPa8MR_jIjDxuEeMBxhbMAILl0fvJyOpTP_1JEYbbXdzyXLSTOgrLLOugXXNIGbHv1qNnXiBgUxs6acl_2q_PaTbNpWCSiBorFnT2eKv3jrllrWYGEIKNd0--Wu4W-3uA"/>
+                        <div class="absolute bottom-4 left-4 right-4 p-md glass-card rounded-lg opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
+                            <div class="flex justify-between items-center">
+                                <span class="text-label-bold font-label-bold text-on-surface">112 Imagens</span>
+                                <span class="bg-primary text-on-primary px-sm py-1 rounded text-[10px] font-bold">Novo</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h5 class="font-headline-sm text-headline-sm text-on-surface">Profundezas de Azul-Celeste</h5>
+                            <p class="text-on-surface-variant text-body-sm">Natureza &amp; Meio Ambiente</p>
+                        </div>
+                        <div class="flex items-center gap-xs">
+                            <div class="w-8 h-8 rounded-full bg-surface-dim overflow-hidden border border-surface-white">
+                                <img class="w-full h-full object-cover" data-alt="A professional headshot of a female photographer with a sleek, minimalist aesthetic. Soft, natural light illuminates her face, highlighting a friendly yet professional expression. She is in a bright, airy artist studio environment with clean white walls and subtle artistic textures in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASGo9yYXkmQkdGhMehcRnI8ydaCwpUUKBryJ48_He4lj6_ll9yTAHuqRgcm6X4Abc1w1pkOOIKMZLEurRbpSMsk73pXV46XfK6CKJfVXKA5lMK7S4nHtQuCVtPr0neYVsXscbbWEkv4av9q8YWdbIu3BXP0RS4536k6j0B9-TIyziNUVMaJxhuBbcs1JFhKLtu6h-1Kr23T5Pmsewx3l6pH8nlYlSPlcTTAsiamOOnjDuNNKde32skRw"/>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <!-- Collection 3 -->
+                <article class="group">
+                    <div class="image-hover-zoom aspect-[4/5] rounded-xl mb-md bg-surface-dim relative">
+                        <img class="w-full h-full object-cover" data-alt="A high-fashion editorial photograph set in a neon-lit urban alleyway at night. The model is wearing a structural, avant-garde outfit in deep primary blue. Reflective surfaces and puddles on the ground catch the vibrant pink and blue neon lights, creating a moody, cinematic atmosphere with a high-performance, modern feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2vZrw5O4TN9Wsq-tvVCO_kmzLyRFq7mX-Em8HA6QBzGeCUnA8hFR-E9adFck3JTMygY6PaZb_Om-qORm75fyRp_5QrR-rKqC0OAED-oOhviWxsezXFbpbDMoCtSyFDUBvN8pncqvKM10UIr-zD6rcvMMdVNL48N1kmx91799kqJPGP80TiOtbc7URC4ID-G9BZANi8_he2NfCG3FWtibR5awf_PE85Bj61CvZcWTs3CEWoOY6v5Loug"/>
+                        <div class="absolute bottom-4 left-4 right-4 p-md glass-card rounded-lg opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
+                            <div class="flex justify-between items-center">
+                                <span class="text-label-bold font-label-bold text-on-surface">48 Imagens</span>
+                                <span class="bg-primary text-on-primary px-sm py-1 rounded text-[10px] font-bold">Em Alta</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h5 class="font-headline-sm text-headline-sm text-on-surface">Musa Noturna</h5>
+                            <p class="text-on-surface-variant text-body-sm">Editorial &amp; Moda</p>
+                        </div>
+                        <div class="flex items-center gap-xs">
+                            <div class="w-8 h-8 rounded-full bg-surface-dim overflow-hidden border border-surface-white">
+                                <img class="w-full h-full object-cover" data-alt="A professional studio portrait of a male photographer. He has a modern, creative appearance and is looking directly at the camera with confidence. The lighting is focused and dramatic, typical of a high-end fashion or portrait studio. The color palette is composed of sophisticated grays and deep blues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX3XyOphe3lLAhgt4hTJEsuo86tWuNAVZa_TQ8z4VVuGG-hpf8H6xQCdQLKdrx1-dJ1Gtw7VazSdc2mlKn3A2gormoHPetNP0qokaRFJie9scSWXwZey6pURqhOJQTrvFfQIddfi3sIwOZfgYxPGVmuCv9CbjW3BDkQlg5aSESnZKQYY-yvIYztQWx-bwzubORSUgfXmbtxqPAn30eN-1Eljp9cTS0uSj4mTcjNdAAMZNZB1q5hWftNw"/>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+    <section class="py-xl bg-deep-navy text-surface-white overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-full h-full opacity-10 pointer-events-none">
+            <svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+                <path d="M0 100 C 20 0 50 0 100 100 Z" fill="currentColor"></path>
+            </svg>
+        </div>
+        <div class="container mx-auto px-margin-desktop relative z-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-xl text-center">
+                <div>
+                    <div class="text-display-lg font-display-lg text-primary mb-xs" id="stat-photos">50K+</div>
+                    <p class="text-surface-variant font-label-bold uppercase tracking-widest text-[10px]">Ativos Verificados</p>
+                </div>
+                <div>
+                    <div class="text-display-lg font-display-lg text-primary mb-xs" id="stat-photographers">1.2K</div>
+                    <p class="text-surface-variant font-label-bold uppercase tracking-widest text-[10px]">Criadores de Elite</p>
+                </div>
+                <div>
+                    <div class="text-display-lg font-display-lg text-primary mb-xs" id="stat-downloads">200K</div>
+                    <p class="text-surface-variant font-label-bold uppercase tracking-widest text-[10px]">Licenciados Comerciais</p>
+                </div>
+                <div>
+                    <div class="text-display-lg font-display-lg text-primary mb-xs" id="stat-payouts">$2.4M</div>
+                    <p class="text-surface-variant font-label-bold uppercase tracking-widest text-[10px]">Pagamentos aos Criadores</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-xl">
+        <div class="container mx-auto px-margin-desktop">
+            <div class="bg-primary rounded-3xl p-xl flex flex-col md:flex-row items-center justify-between gap-xl relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1),transparent)]"></div>
+                <div class="relative z-10 max-w-xl">
+                    <h3 class="font-display-lg text-display-lg text-on-primary mb-md">Pronto para redefinir sua identidade visual?</h3>
+                    <p class="text-on-primary/80 font-body-lg text-body-lg">Junte-se a mais de 15.000 agências e marcas que obtêm suas imagens na Athletica</p>
+                </div>
+                <div class="relative z-10 flex flex-col gap-md">
+                    <button class="bg-surface-white text-primary px-xl py-lg rounded-full font-label-bold text-label-bold hover:scale-105 transition-transform shadow-xl">
+                        Criar conta profissional
+                    </button>
+                    <p class="text-on-primary/60 text-center text-label-md">Não é necessário cartão de crédito para navegar</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-border-light pt-xl pb-md">
+    <div class="container mx-auto px-margin-desktop">
+        <div class="grid grid-cols-12 gap-xl mb-xl">
+            <div class="col-span-12 md:col-span-4">
+                <div class="flex items-center gap-sm mb-md">
+                    <span class="material-symbols-outlined text-primary text-3xl" data-icon="camera">camera</span>
+                    <h2 class="font-headline-md text-headline-md font-bold text-primary">LensFlow</h2>
+                </div>
+                <p class="text-on-surface-variant mb-md max-w-sm">
+                    O destino definitivo para fotografia de nível profissional, licenciamento de obras de arte e narrativa visual visionária
+                </p>
+                <div class="flex gap-md">
+                    <a class="w-10 h-10 rounded-full border border-border-light flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+                        <span class="material-symbols-outlined text-lg" data-icon="share">share</span>
+                    </a>
+                    <a class="w-10 h-10 rounded-full border border-border-light flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+                        <span class="material-symbols-outlined text-lg" data-icon="language">language</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-span-6 md:col-span-2">
+                <h6 class="font-label-bold text-label-bold mb-md uppercase">Mercado</h6>
+                <ul class="space-y-sm text-on-surface-variant text-body-sm">
+                    <li><a class="hover:text-primary" href="#">Apresentação</a></li>
+                    <li><a class="hover:text-primary" href="#">Principais Artistas</a></li>
+                    <li><a class="hover:text-primary" href="#">Novos Lançamentos</a></li>
+                    <li><a class="hover:text-primary" href="#">Preços</a></li>
+                </ul>
+            </div>
+            <div class="col-span-6 md:col-span-2">
+                <h6 class="font-label-bold text-label-bold mb-md uppercase">Recursos</h6>
+                <ul class="space-y-sm text-on-surface-variant text-body-sm">
+                    <li><a class="hover:text-primary" href="#">Guia do Criador</a></li>
+                    <li><a class="hover:text-primary" href="#">Licenciamento</a></li>
+                    <li><a class="hover:text-primary" href="#">Documentos Jurídicos</a></li>
+                    <li><a class="hover:text-primary" href="#">Suporte</a></li>
+                </ul>
+            </div>
+            <div class="col-span-12 md:col-span-4">
+                <h6 class="font-label-bold text-label-bold mb-md uppercase">Atualizações Selecionadas</h6>
+                <p class="text-on-surface-variant text-body-sm mb-md">Receba as coleções mais recentes na sua caixa de entrada semanalmente</p>
+                <form class="flex gap-sm">
+                    <input class="flex-1 bg-surface border border-border-light rounded-lg px-md py-2 focus:ring-1 focus:ring-primary focus:border-primary outline-none text-body-sm" placeholder="Seu endereço de Email" type="email"/>
+                    <button class="bg-primary text-on-primary px-lg py-2 rounded-lg font-label-bold text-label-bold transition-opacity hover:opacity-90">Join</button>
+                </form>
+            </div>
+        </div>
+        <div class="border-t border-border-light pt-md flex flex-col md:flex-row justify-between items-center gap-md text-on-surface-variant text-[12px]">
+            <p>Todos os direitos reservados Athletica Marketplace Fotografia 2026©</p>
+            <div class="flex gap-lg">
+                <a class="hover:text-primary" href="#">Política de Privacidade</a>
+                <a class="hover:text-primary" href="#">Termos de Serviços</a>
+                <a class="hover:text-primary" href="#">Configurações de cookies</a>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+    const observerOptions = {
+        threshold: 0.1
+    };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('opacity-100', 'translate-y-0');
+                entry.target.classList.remove('opacity-0', 'translate-y-10');
+            }
+        });
+    }, observerOptions);
 
-<h1>PS Project</h1>
-
-<p>Sistema de venda de fotos</p>
-
-<a href="/eventos">
-    Ver Eventos
-</a>
-
-</body>
-</html>
+    document.querySelectorAll('article').forEach(el => {
+        el.classList.add('transition-all', 'duration-700', 'ease-out', 'opacity-0', 'translate-y-10');
+        observer.observe(el);
+    });
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const heroImage = document.querySelector('section img');
+        if (heroImage) {
+            heroImage.style.transform = `translateY(${scrolled * 0.4}px)`;
+        }
+    });
+</script>
+</body></html>
