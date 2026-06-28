@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Carrinho de compras | Athletica Fotografia</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Hanken+Grotesk:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5faff;
+            color: #171c20;
+        }
+        .font-headline { font-family: 'Hanken Grotesk', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #E2E8F0;
+        }
+        .sticky-summary {
+            position: sticky;
+            top: 100px;
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-white": "#FFFFFF",
+                        "on-tertiary-container": "#fdfcff",
+                        "surface-tint": "#005faf",
+                        "outline": "#717784",
+                        "primary-container": "#0075d6",
+                        "tertiary": "#4c5d74",
+                        "on-error": "#ffffff",
+                        "primary": "#005cab",
+                        "outline-variant": "#c0c7d5",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#ecf1f6",
+                        "surface-container-low": "#eff4f9",
+                        "border-light": "#E2E8F0",
+                        "surface": "#f5faff",
+                        "on-primary-fixed": "#001c3a",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#414753",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#0a1c31",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2b3135",
+                        "on-secondary-fixed-variant": "#404756",
+                        "deep-navy": "#1A1F29",
+                        "on-tertiary-fixed-variant": "#37485e",
+                        "on-secondary-container": "#5c6372",
+                        "surface-container-highest": "#dee3e8",
+                        "secondary-fixed": "#dce2f5",
+                        "on-secondary-fixed": "#151c29",
+                        "secondary": "#575e6e",
+                        "on-background": "#171c20",
+                        "background": "#f5faff",
+                        "on-primary-container": "#fefcff",
+                        "secondary-fixed-dim": "#c0c6d9",
+                        "surface-bright": "#f5faff",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#d5dbdf",
+                        "primary-fixed-dim": "#a5c8ff",
+                        "on-surface": "#171c20",
+                        "tertiary-fixed-dim": "#b6c8e3",
+                        "inverse-primary": "#a5c8ff",
+                        "primary-fixed": "#d4e3ff",
+                        "tertiary-fixed": "#d3e4ff",
+                        "tertiary-container": "#65768e",
+                        "secondary-container": "#d9dff2",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#dee3e8",
+                        "surface-container": "#e9eef3",
+                        "surface-container-high": "#e4e9ee",
+                        "on-primary-fixed-variant": "#004786"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "margin-desktop": "32px",
+                        "container-max": "1280px",
+                        "xl": "48px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "unit": "4px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Inter"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "display-lg-mobile": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface">
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-border-light">
+    <div class="flex justify-between items-center px-margin-desktop h-16 w-full max-w-container-max mx-auto">
+        <div class="flex items-center gap-sm">
+            <span class="material-symbols-outlined text-primary text-headline-md">camera</span>
+            <span class="font-headline-md text-headline-md font-bold text-primary">Athletica</span>
+        </div>
+        <nav class="hidden md:flex items-center gap-lg">
+            <a class="text-on-surface-variant font-label-md text-label-md hover:opacity-80 transition-opacity" href="#">Explorar</a>
+            <a class="text-on-surface-variant font-label-md text-label-md hover:opacity-80 transition-opacity" href="#">Buscar</a>
+            <a class="text-on-surface-variant font-label-md text-label-md hover:opacity-80 transition-opacity" href="#">Portfolio</a>
+            <div class="relative">
+                <span class="material-symbols-outlined text-primary">shopping_cart</span>
+                <span class="absolute -top-2 -right-2 bg-primary text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">2</span>
+            </div>
+        </nav>
+    </div>
+</header>
+<main class="pt-24 pb-xl px-margin-desktop max-w-container-max mx-auto">
+    <h1 class="font-headline-md text-display-lg mb-lg text-on-surface">Seu Carrinho</h1>
+    <div class="grid grid-cols-12 gap-xl items-start">
+        <div class="col-span-8 flex flex-col gap-md">
+            <!-- Item 1 -->
+            <div class="bg-surface-white border border-border-light rounded-xl p-md flex gap-md group hover:shadow-lg transition-all duration-300">
+                <div class="w-48 h-32 rounded-lg overflow-hidden flex-shrink-0">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A cinematic architectural photograph of a minimalist glass building reflecting a soft pink sunset. The composition uses high-end architectural photography techniques with sharp lines and a clear sky. The colors are serene, dominated by blue and soft pastel hues, fitting the LensFlow premium gallery aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWzPIYyBNWk2L6zi7B8mgcxLYGuBdIUl3D8ihvXUvkiEf4B3_MFQ2oIXe3vK5k6aT2l_5T4ZnK6GGqE82tlb_6HOkB4DPSLAD9rlrG5dPMskWQbDahkLBHHnPDZHb_xpQ_AzGDtyu-7i6vXo42FHTudD100H4V0EjXJCyLGOW9kcvtrzvkl96zsCYxBYxOyu5rJkYU8gZwUngb-70uZjqlJnOyU2qzRU7VE56GWzR4k5mzrzuysMbV3w"/>
+                </div>
+                <div class="flex-grow flex flex-col justify-between py-1">
+                    <div>
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-headline-sm text-headline-sm text-on-surface">Urban Reflections #04</h3>
+                            <button class="text-on-surface-variant hover:text-error transition-colors">
+                                <span class="material-symbols-outlined">delete</span>
+                            </button>
+                        </div>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">Fotografo(a): <span class="font-medium">Elena Rossi</span></p>
+                        <div class="mt-sm flex items-center gap-md">
+                            <select class="bg-surface-container-low border-none rounded-lg font-label-md text-label-md py-1 px-3 focus:ring-2 focus:ring-primary">
+                                <option>Standard License</option>
+                                <option selected="">Extended License</option>
+                                <option>Commercial License</option>
+                            </select>
+                            <span class="font-label-md text-label-md text-on-surface-variant underline cursor-pointer">License Details</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-end">
+                        <span class="font-headline-sm text-headline-sm text-primary">R$120.00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-surface-white border border-border-light rounded-xl p-md flex gap-md group hover:shadow-lg transition-all duration-300">
+                <div class="w-48 h-32 rounded-lg overflow-hidden flex-shrink-0">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A breathtaking landscape photograph of misty mountains in the Pacific Northwest at dawn. The lighting is ethereal and soft, with layers of fog cutting through dark evergreen forests. The style is professional landscape photography, featuring deep teals and muted natural greens, evoking a sense of calm and high-end visual storytelling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK6OX8RaRvOOCp_0OI9l2jliPVruR47pcgep9Mb4gHce2s7W9w5AQh32qgVuxOIQLyeljXOlXzCsTQS4okLU7aifab-JipQDXwxYKD--qohOFLDID7Byip747jj6GuWdifTAP4e3ylJMLcKX7Fy079k6G-eST6z1kqDV2-I73bQR58QRvR0bWGvpHzX28kwmunK1uH_3YCCYlyrzYd-AulRqH0KYiNIe8DTyQaFUyUxOFf9zb-8uWBEw"/>
+                </div>
+                <div class="flex-grow flex flex-col justify-between py-1">
+                    <div>
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-headline-sm text-headline-sm text-on-surface">Névoa e Sempre-Verde</h3>
+                            <button class="text-on-surface-variant hover:text-error transition-colors">
+                                <span class="material-symbols-outlined">delete</span>
+                            </button>
+                        </div>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">Fotógrafo: <span class="font-medium">Julian Thorne</span></p>
+                        <div class="mt-sm flex items-center gap-md">
+                            <select class="bg-surface-container-low border-none rounded-lg font-label-md text-label-md py-1 px-3 focus:ring-2 focus:ring-primary">
+                                <option selected="">Licença Padrão</option>
+                                <option>Licença Estendida</option>
+                                <option>Licença Comercial</option>
+                            </select>
+                            <span class="font-label-md text-label-md text-on-surface-variant underline cursor-pointer">Detalhes da Licença</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-end">
+                        <span class="font-headline-sm text-headline-sm text-primary">R$45.00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-lg">
+                <h2 class="font-headline-sm text-headline-sm mb-md text-on-surface">Método de Pagamento</h2>
+                <div class="grid grid-cols-2 gap-md">
+                    <label class="relative flex items-center gap-md p-md border border-primary bg-primary-fixed rounded-xl cursor-pointer">
+                        <input checked="" class="w-5 h-5 text-primary focus:ring-primary" name="payment" type="radio"/>
+                        <div class="flex items-center gap-sm">
+                            <span class="material-symbols-outlined text-primary">credit_card</span>
+                            <span class="font-body-md text-body-md font-medium text-on-primary-fixed">Cartão de Crédito</span>
+                        </div>
+                    </label>
+                    <label class="relative flex items-center gap-md p-md border border-border-light bg-surface-white rounded-xl cursor-pointer hover:border-primary transition-colors">
+                        <input class="w-5 h-5 text-primary focus:ring-primary" name="payment" type="radio"/>
+                        <div class="flex items-center gap-sm">
+                            <span class="material-symbols-outlined text-primary">qr_code_2</span>
+                            <span class="font-body-md text-body-md font-medium text-on-surface">Pix</span>
+                        </div>
+                    </label>
+                </div>
+                <!-- Credit Card Form -->
+                <div class="mt-md bg-surface-white border border-border-light rounded-xl p-lg">
+                    <div class="grid grid-cols-2 gap-md">
+                        <div class="col-span-2">
+                            <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Nome do Titular</label>
+                            <input class="w-full bg-surface-white border border-border-light rounded-lg px-md py-3 focus:border-primary focus:ring-0" placeholder="Nome Completo" type="text"/>
+                        </div>
+                        <div class="col-span-2">
+                            <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Número do Cartão</label>
+                            <input class="w-full bg-surface-white border border-border-light rounded-lg px-md py-3 focus:border-primary focus:ring-0" placeholder="000.000.000-00" type="text"/>
+                        </div>
+                        <div>
+                            <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Data de validade</label>
+                            <input class="w-full bg-surface-white border border-border-light rounded-lg px-md py-3 focus:border-primary focus:ring-0" placeholder="MM/AA" type="text"/>
+                        </div>
+                        <div>
+                            <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">CVV</label>
+                            <input class="w-full bg-surface-white border border-border-light rounded-lg px-md py-3 focus:border-primary focus:ring-0" placeholder="123" type="text"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Right Column: Order Summary -->
+        <div class="col-span-4 sticky-summary">
+            <div class="bg-surface-white border border-border-light rounded-xl p-lg shadow-sm">
+                <h2 class="font-headline-sm text-headline-sm mb-lg text-on-surface">Resumo do pedido</h2>
+                <div class="flex flex-col gap-sm border-b border-border-light pb-md mb-md">
+                    <div class="flex justify-between font-body-md text-body-md">
+                        <span class="text-on-surface-variant">Subtotal de itens</span>
+                        <span class="text-on-surface">R$</span>
+                    </div>
+                    <div class="flex justify-between font-body-md text-body-md">
+                        <span class="text-on-surface-variant">Taxa da plataforma</span>
+                        <span class="text-on-surface">R$4.50</span>
+                    </div>
+                    <div class="flex justify-between font-body-md text-body-md text-primary font-medium">
+                        <span>Disconto</span>
+                        <span>-$0.00</span>
+                    </div>
+                </div>
+                <div class="mb-lg">
+                    <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Código promocional</label>
+                    <div class="flex gap-xs">
+                        <input class="flex-grow bg-surface border border-border-light rounded-lg px-sm py-2 text-sm focus:border-primary focus:ring-0" placeholder="Insira o código" type="text"/>
+                        <button class="bg-secondary text-white px-md py-2 rounded-lg font-label-bold text-label-bold hover:opacity-90 transition-opacity">Aplicar</button>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center mb-xl">
+                    <span class="font-headline-sm text-headline-sm text-on-surface">Total</span>
+                    <span class="text-display-lg-mobile text-primary font-bold">R$</span>
+                </div>
+                <button class="w-full bg-primary text-white h-14 rounded-full font-headline-sm text-headline-sm flex items-center justify-center gap-sm hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary-container/20">
+                    Complete Purchase
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+                <p class="mt-md text-center font-body-sm text-body-sm text-on-surface-variant">
+                    Pagamento seguro com criptografia SSL de 256 bits
+                </p>
+                <div class="mt-lg pt-lg border-t border-border-light flex justify-center gap-md grayscale opacity-50">
+                    <img alt="Visa" class="h-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEKSIKEro-X9zlaBX9QSs07fLBH-Zqur23Z5KBqrd5bi26k2dZfQxjWvoDRJscolMHgcW_LynvcoojZs9F5sP1jeK2YIHBwOV0QOsRGas5J1Csc3oHFOFBZbXX2QMkrhX8B07H6gTRUhb88Kw5FiotIES9DmOkbgc3eIP5hnDHE_21aBLUL2zGg70i2jRy1ieSu4Rtb47_Agk5CLKQgxEK_ai49bwmqEOgaIrg9mc07qs_tAfrUltt-g"/>
+                    <img alt="Mastercard" class="h-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgUXGEDn0e6lJ-Cd4nwY5kC32FmTo7XbCU3Bi14lKfL12PqTxHa9LRqI9CLp49fIVVAiIybG9yxQ-3bW4d8v3dCDyHyQODZeqE8UsLvPoj9E174CNT31CEQAuRoQ2lFrDe29ZFv6N_-Vx8a5aWrtHm-uwspLgx_Bm2ec4CJAv7vH2BI8Dn_Vp0q9rnsGSQ9Nc3v2lJ9d4CPtoqMpJ8KsDVawfQnZyWrdkLqgdzhimZG7KDnL_dufcGUg"/>
+                    <img alt="Google Pay" class="h-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApskeLSJ5l180zRfUWb5oL0qlvjdepscrYk1JLj273AtPtAlygVWm-RMO_OJP-EWY6qWqxAOY66aDE7eWi61gYScvZQlBpN5k4bbOHuOrPLuL96xNhNzDvb8ElU_OgAQdxVL0MrMo4HvGuQDZ-dyfthZvA-qOQf-nOZYbJXI6aVHYM8v3Mm7msBTNx6KjqZHEm9akQD496ABuzbeX9lotacre5jV5CSUOxogiUu_p84HLgLFk8hIjctQ"/>
+                    <img alt="Apple Pay" class="h-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMO7Yp7zn4EOTIdSwvEy9FpmRxAxhf3UL-k9MmZDltLaHMW9c7svAb0XXNr5m0U3_9CdtHuZdwVF71da5hCqObXEzAKBUHnx_lZx49KNnyjiLUPMqvGRaA-8YJjqHCVXBtYlUzzfLQz0Npix9gNjfh16ZDu6y5Uj2kAVDcd_mbcIEg-RzfLwxoLGS0vVaycIf1CdM2IkxE2J97TsUasNICY5EHq_ZgDFYOztBXzZe8EmAUZ6jOpX6New"/>
+                </div>
+            </div>
+            <div class="mt-md p-md bg-surface-container-low rounded-xl border border-border-light flex gap-sm">
+                <span class="material-symbols-outlined text-primary">verified_user</span>
+                <div>
+                    <p class="font-label-bold text-label-bold text-on-surface">Lumina Protection</p>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">As suas licenças ficam armazenadas permanentemente no seu painel.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- Footer -->
+<footer class="bg-on-background text-surface py-xl">
+    <div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-4 gap-xl">
+        <div class="col-span-1">
+            <div class="flex items-center gap-sm mb-md">
+                <span class="material-symbols-outlined text-primary-fixed text-headline-md">camera</span>
+                <span class="font-headline-md text-headline-md font-bold text-primary-fixed">Athletica</span>
+            </div>
+            <p class="font-body-sm text-body-sm text-surface-variant">Elevando os padrões dos marketplaces de fotografia de alto nível. Com a confiança de mais de 50.000 criadores profissionais</p>
+        </div>
+        <div>
+            <h4 class="font-label-bold text-label-bold mb-md text-primary-fixed">Marketplace</h4>
+            <ul class="flex flex-col gap-sm text-body-sm text-surface-variant">
+                <li class="hover:text-primary-fixed cursor-pointer">Coleções em Destaque</li>
+                <li class="hover:text-primary-fixed cursor-pointer">Principais Fotógrafos</li>
+                <li class="hover:text-primary-fixed cursor-pointer">Novidades</li>
+                <li class="hover:text-primary-fixed cursor-pointer">Contratos de Licenciamento</li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="font-label-bold text-label-bold mb-md text-primary-fixed">Support</h4>
+            <ul class="flex flex-col gap-sm text-body-sm text-surface-variant">
+                <li class="hover:text-primary-fixed cursor-pointer">Central de Ajuda</li>
+                <li class="hover:text-primary-fixed cursor-pointer">Venda a suas fotos</li>
+                <li class="hover:text-primary-fixed cursor-pointer">Entre em contato com o suporte</li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="font-label-bold text-label-bold mb-md text-primary-fixed">Boletim informativo</h4>
+            <p class="font-body-sm text-body-sm text-surface-variant mb-sm">Receba destaques da curadoria toda a semana</p>
+            <div class="flex gap-xs">
+                <input class="bg-deep-navy border border-outline rounded-lg px-md py-2 w-full text-white" placeholder="Seu email" type="email"/>
+                <button class="bg-primary px-md rounded-lg text-white material-symbols-outlined">send</button>
+            </div>
+        </div>
+    </div>
+    <div class="max-w-container-max mx-auto px-margin-desktop mt-xl pt-lg border-t border-outline/20 flex justify-between items-center text-surface-variant font-label-md text-label-md">
+        <span>Todos os direitos reservados. Athletica Fotografia 2026©</span>
+        <div class="flex gap-lg">
+            <span class="hover:text-white cursor-pointer">Termos</span>
+            <span class="hover:text-white cursor-pointer">Privacidade</span>
+            <span class="hover:text-white cursor-pointer">Cookies</span>
+        </div>
+    </div>
+</footer>
+<script>
+    const mainButton = document.querySelector('button.bg-primary');
+    mainButton.addEventListener('click', () => {
+        const originalText = mainButton.innerHTML;
+        mainButton.innerHTML = `<span class="material-symbols-outlined animate-spin">sync</span> processando`;
+        mainButton.classList.add('opacity-80');
+
+        setTimeout(() => {
+            mainButton.innerHTML = `<span class="material-symbols-outlined">check_circle</span> pagamento realizado com sucesso`;
+            mainButton.classList.remove('bg-primary');
+            mainButton.classList.add('bg-green-600');
+        }, 2000);
+    });
+    const cards = document.querySelectorAll('.group');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-2px)';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+        });
+    });
+</script>
+</body></html>
