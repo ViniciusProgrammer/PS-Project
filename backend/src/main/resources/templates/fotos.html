@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Galeria - Athletica Fotografia</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+<style>
+
+:root{
+    --primary:#005CAB;
+    --primary-hover:#0075D6;
+    --deep-navy:#1A1F29;
+    --background:#F5FAFF;
+    --white:#FFFFFF;
+    --border:#E2E8F0;
+    --text:#334155;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:var(--background);
+    color:var(--deep-navy);
+}
+
+/* HEADER */
+
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    height:70px;
+    background:white;
+    border-bottom:1px solid var(--border);
+    z-index:1000;
+}
+
+.header-container{
+    max-width:1400px;
+    height:100%;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 24px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:var(--primary);
+    font-weight:700;
+    font-size:1.3rem;
+}
+
+.nav-icons{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.icon-btn{
+    cursor:pointer;
+    position:relative;
+}
+
+.cart-counter{
+    position:absolute;
+    top:-6px;
+    right:-6px;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:red;
+    color:white;
+    font-size:11px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* MAIN */
+
+main{
+    max-width:1400px;
+    margin:auto;
+    padding:100px 24px 40px;
+}
+
+/* HERO */
+
+.hero{
+    margin-bottom:40px;
+}
+
+.hero h1{
+    font-size:2.5rem;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:var(--text);
+    margin-bottom:20px;
+}
+
+.search-box{
+    display:flex;
+    gap:12px;
+}
+
+.search-box input{
+    flex:1;
+    padding:14px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    outline:none;
+}
+
+.search-box button{
+    border:none;
+    background:var(--primary);
+    color:white;
+    padding:0 25px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+.search-box button:hover{
+    background:var(--primary-hover);
+}
+
+/* GRID */
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.photo-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:16px;
+    overflow:hidden;
+    transition:.2s;
+}
+
+.photo-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.photo-selected{
+    border:2px solid var(--primary);
+    box-shadow:0 0 0 4px rgba(0,92,171,.15);
+}
+
+.photo-image{
+    position:relative;
+}
+
+.photo-image img{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+}
+
+.select-btn{
+    position:absolute;
+    top:12px;
+    right:12px;
+    cursor:pointer;
+}
+
+.photo-checkbox{
+    display:none;
+}
+
+.checkmark{
+    width:28px;
+    height:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:white;
+    border:2px solid var(--primary);
+    border-radius:8px;
+
+    transition:.2s;
+}
+
+.photo-checkbox:checked + .checkmark{
+    background:var(--primary);
+}
+
+.photo-checkbox:checked + .checkmark::after{
+    content:"✓";
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.photo-info{
+    padding:15px;
+}
+
+.photo-title{
+    font-weight:600;
+    margin-bottom:5px;
+}
+
+.photo-athlete{
+    color:var(--text);
+    font-size:14px;
+    margin-bottom:15px;
+}
+
+.photo-footer{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.price{
+    color:var(--primary);
+    font-weight:700;
+}
+
+.add-btn{
+    border:none;
+    background:var(--primary);
+    color:white;
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.add-btn:hover{
+    background:var(--primary-hover);
+}
+
+/* PAGINATION */
+
+.pagination{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:40px;
+}
+
+.page-btn{
+    border:none;
+    background:white;
+    padding:10px 16px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    cursor:pointer;
+}
+
+.page-btn.active{
+    background:var(--primary);
+    color:white;
+}
+
+/* FLOAT CART */
+
+.floating-cart{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    background:var(--primary);
+    color:white;
+    padding:15px 22px;
+    border-radius:999px;
+    font-weight:600;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+/* RESPONSIVO */
+
+@media(max-width:1200px){
+    .gallery-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+@media(max-width:768px){
+    .gallery-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .hero h1{
+        font-size:2rem;
+    }
+}
+
+@media(max-width:500px){
+    .gallery-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+
+        <div class="logo">
+            <span class="material-symbols-outlined">camera</span>
+            Athletica Fotografia
+        </div>
+
+        <div class="nav-icons">
+
+            <div class="icon-btn">
+                <span class="material-symbols-outlined">
+                    shopping_cart
+                </span>
+
+                <span class="cart-counter" id="headerCounter">
+                    0
+                </span>
+            </div>
+
+            <span class="material-symbols-outlined">
+                person
+            </span>
+
+        </div>
+
+    </div>
+</header>
+
+<main>
+
+    <section class="hero">
+
+        <h1>Corrida de Rua Natal 2026</h1>
+
+        <p>1.284 fotos encontradas</p>
+
+
+    </section>
+
+    <section class="gallery-grid">
+
+        <!-- FOTO -->
+
+        <article class="photo-card">
+
+            <div class="photo-image">
+
+                <img src="https://picsum.photos/500/700?1">
+
+                <label class="select-btn">
+
+                    <input
+                        type="checkbox"
+                        class="photo-checkbox">
+
+                    <span class="checkmark"></span>
+
+                </label>
+
+            </div>
+
+            <div class="photo-info">
+
+                <div class="photo-title">
+                    Foto #12345
+                </div>
+
+                <div class="photo-athlete">
+                    Corredor 458
+                </div>
+
+                <div class="photo-footer">
+
+                    <span class="price">
+                        R$ 12,90
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        <!-- DUPLIQUE PARA TESTE -->
+
+        <article class="photo-card">
+            <div class="photo-image">
+                <img src="https://picsum.photos/500/700?2">
+                <label class="select-btn">
+
+                    <input
+                        type="checkbox"
+                        class="photo-checkbox">
+
+                    <span class="checkmark"></span>
+
+                </label>
+            </div>
+            <div class="photo-info">
+                <div class="photo-title">Foto #12346</div>
+                <div class="photo-athlete">Corredor 459</div>
+                <div class="photo-footer">
+                    <span class="price">R$ 12,90</span>
+                </div>
+            </div>
+        </article>
+
+        <article class="photo-card">
+            <div class="photo-image">
+                <img src="https://picsum.photos/500/700?3">
+                <label class="select-btn">
+
+                    <input
+                        type="checkbox"
+                        class="photo-checkbox">
+
+                    <span class="checkmark"></span>
+
+                </label>
+            </div>
+            <div class="photo-info">
+                <div class="photo-title">Foto #12347</div>
+                <div class="photo-athlete">Corredor 460</div>
+                <div class="photo-footer">
+                    <span class="price">R$ 12,90</span>
+                </div>
+            </div>
+        </article>
+
+        <article class="photo-card">
+            <div class="photo-image">
+                <img src="https://picsum.photos/500/700?4">
+                <label class="select-btn">
+
+                    <input
+                        type="checkbox"
+                        class="photo-checkbox">
+
+                    <span class="checkmark"></span>
+
+                </label>
+            </div>
+            <div class="photo-info">
+                <div class="photo-title">Foto #12348</div>
+                <div class="photo-athlete">Corredor 461</div>
+                <div class="photo-footer">
+                    <span class="price">R$ 12,90</span>
+                </div>
+            </div>
+        </article>
+
+    </section>
+
+    <div class="pagination">
+
+        <button class="page-btn">
+            Anterior
+        </button>
+
+        <button class="page-btn active">
+            1
+        </button>
+
+        <button class="page-btn">
+            2
+        </button>
+
+        <button class="page-btn">
+            3
+        </button>
+
+        <button class="page-btn">
+            Próxima
+        </button>
+
+    </div>
+
+</main>
+
+<div class="floating-cart" id="floatingCart">
+    🛒 0 fotos | R$ 0,00
+</div>
+
+<script>
+
+let totalFotos = 0;
+const valorFoto = 12.90;
+
+const cards = document.querySelectorAll('.photo-card');
+
+cards.forEach(card => {
+
+    const btn = card.querySelector('.add-btn');
+
+    btn.addEventListener('click', () => {
+
+        if(card.classList.contains('photo-selected')){
+            return;
+        }
+
+        card.classList.add('photo-selected');
+
+        totalFotos++;
+
+        atualizarCarrinho();
+
+        btn.textContent = 'Selecionada';
+        btn.disabled = true;
+
+    });
+
+});
+
+function atualizarCarrinho(){
+
+    document.getElementById('headerCounter').textContent =
+        totalFotos;
+
+    document.getElementById('floatingCart').innerHTML =
+        `🛒 ${totalFotos} fotos | R$ ${(totalFotos * valorFoto).toFixed(2)}`;
+
+}
+
+</script>
+
+</body>
+</html>
