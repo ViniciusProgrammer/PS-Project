@@ -8,7 +8,6 @@
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
         tailwind.config = {
@@ -132,7 +131,8 @@
 </head>
 <body class="min-h-screen flex items-center justify-center overflow-x-hidden">
 <div class="fixed inset-0 z-0">
-    <div class="w-full h-full bg-cover bg-center opacity-20 filter grayscale" data-alt="A sophisticated architectural photograph of a minimalist concrete and glass building at dawn. The lighting is soft and blue-toned, emphasizing sharp geometric lines and vast negative space. The overall atmosphere is quiet, professional, and high-end, mirroring a premium photography marketplace aesthetic with clean textures and a cold, modern color palette." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCmzzHuXAVTJO8AreBbLC9_9DxgBQFqJ8NMeq_LIJrUQgSxPTjGHyWYNSx7hjTMohaaY41hyIWclcPQKG8VKa86smR5CdY4FgDqWWNEdYpT2XEyRkiAPmz5PJtWH-F8RclZ7upf1w6FC02AD4pGli2wr7_Cbah5BB0SP-G5U2Y-IsftgC4MLg_JSWjHtad3JhXshnMSamVIX7Av0jiSoAPGyHaw-iow4atQeQdrbbnbR8Zma1XdXITtcA')">
+    <div class="w-full h-full bg-cover bg-center opacity-20 filter grayscale"
+         style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCmzzHuXAVTJO8AreBbLC9_9DxgBQFqJ8NMeq_LIJrUQgSxPTjGHyWYNSx7hjTMohaaY41hyIWclcPQKG8VKa86smR5CdY4FgDqWWNEdYpT2XEyRkiAPmz5PJtWH-F8RclZ7upf1w6FC02AD4pGli2wr7_Cbah5BB0SP-G5U2Y-IsftgC4MLg_JSWjHtad3JhXshnMSamVIX7Av0jiSoAPGyHaw-iow4atQeQdrbbnbR8Zma1XdXITtcA')">
     </div>
     <div class="absolute inset-0 bg-gradient-to-tr from-surface via-transparent to-surface-container-low"></div>
 </div>
@@ -140,7 +140,8 @@
     <div class="flex flex-col md:flex-row w-full max-w-5xl bg-surface-white rounded-xl overflow-hidden auth-card">
         <div class="hidden md:flex md:w-1/2 relative group">
             <div class="absolute inset-0 bg-primary/10 z-10"></div>
-            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A breathtaking interior shot of a modern museum corridor featuring dramatic skylights and shadows. High-contrast architectural photography with a focus on symmetry and structural elegance. The image uses a palette of slate grey, bright white, and deep navy tones, creating an inspiring and reliable atmosphere for professional photographers and collectors." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDHgQAXErKnJ0odkEhh-cG4Zc5v29muVA8bVDfLR-ARKYiohr-3mSiVCO_L9TAa6DadeGzkZ3LQfLEyDVGvFkauOfw_h99-KhBOlBysSIN04QGADGb3CLMeNoadU8laqeJPt5whwouW9lTuxj7e_7JA9NrA6KT6SiZtGcP2ldrVet4jXKefOoWVLKt4QWbsKysA3iAaX3Jvl0SI9YELG-Nlr-7Hwiw8OnruyQALFkUj_O9HT6gq9mhJnQ')">
+            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                 style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDHgQAXErKnJ0odkEhh-cG4Zc5v29muVA8bVDfLR-ARKYiohr-3mSiVCO_L9TAa6DadeGzkZ3LQfLEyDVGvFkauOfw_h99-KhBOlBysSIN04QGADGb3CLMeNoadU8laqeJPt5whwouW9lTuxj7e_7JA9NrA6KT6SiZtGcP2ldrVet4jXKefOoWVLKt4QWbsKysA3iAaX3Jvl0SI9YELG-Nlr-7Hwiw8OnruyQALFkUj_O9HT6gq9mhJnQ')">
             </div>
             <div class="absolute bottom-0 left-0 p-lg z-20 bg-gradient-to-t from-deep-navy/80 to-transparent w-full">
                 <h2 class="font-headline-md text-headline-md text-surface-white mb-xs">Athletica</h2>
@@ -171,10 +172,15 @@
                 <span class="flex-shrink mx-md font-label-md text-label-md text-tertiary">ou entre com e-mail</span>
                 <div class="flex-grow border-t border-border-light"></div>
             </div>
-            <form action="#" class="space-y-md">
+
+            <!-- Formulário integrado ao backend -->
+            <form id="loginForm" class="space-y-md">
                 <div>
-                    <label class="block font-label-bold text-label-bold text-on-surface-variant mb-xs" for="email">Endereço de Email</label>
-                    <input class="w-full h-12 px-md bg-surface-white border border-border-light rounded-xl focus:ring-2 focus:ring-primary focus:border-primary font-body-md text-body-md transition-all outline-none" id="email" placeholder="photographer@lensflow.com" type="email"/>
+                    <label class="block font-label-bold text-label-bold text-on-surface-variant mb-xs" for="email">
+                        Endereço de Email
+                    </label>
+                    <input class="w-full h-12 px-md bg-surface-white border border-border-light rounded-xl focus:ring-2 focus:ring-primary focus:border-primary font-body-md text-body-md transition-all outline-none"
+                           id="email" placeholder="photographer@athletica.com" type="email" required/>
                 </div>
                 <div>
                     <div class="flex justify-between mb-xs">
@@ -182,8 +188,10 @@
                         <a class="font-label-bold text-label-bold text-primary hover:underline" href="#">Esqueceu a senha?</a>
                     </div>
                     <div class="relative">
-                        <input class="w-full h-12 px-md bg-surface-white border border-border-light rounded-xl focus:ring-2 focus:ring-primary focus:border-primary font-body-md text-body-md transition-all outline-none" id="password" placeholder="••••••••" type="password"/>
-                        <button class="absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary" type="button">
+                        <input class="w-full h-12 px-md bg-surface-white border border-border-light rounded-xl focus:ring-2 focus:ring-primary focus:border-primary font-body-md text-body-md transition-all outline-none"
+                               id="password" placeholder="••••••••" type="password" required/>
+                        <button class="absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary"
+                                type="button" id="togglePassword">
                             <span class="material-symbols-outlined text-xl">visibility</span>
                         </button>
                     </div>
@@ -192,10 +200,20 @@
                     <input class="w-5 h-5 rounded border-border-light text-primary focus:ring-primary" id="remember" type="checkbox"/>
                     <label class="font-body-sm text-body-sm text-on-surface-variant" for="remember">Deixe-me logado por 30 dias!</label>
                 </div>
-                <button class="w-full h-12 bg-primary text-on-primary rounded-xl font-label-bold text-label-bold uppercase tracking-widest hover:bg-primary-container transition-all active:scale-[0.98] shadow-md hover:shadow-lg" type="submit">
+
+                <!-- Mensagem de erro -->
+                <div id="errorMsg" class="hidden flex items-center gap-sm p-sm bg-error-container rounded-lg">
+                    <span class="material-symbols-outlined text-error text-lg">error</span>
+                    <p class="font-body-sm text-body-sm text-error" id="errorText">Email ou senha incorretos.</p>
+                </div>
+
+                <button id="submitBtn"
+                        class="w-full h-12 bg-primary text-on-primary rounded-xl font-label-bold text-label-bold uppercase tracking-widest hover:bg-primary-container transition-all active:scale-[0.98] shadow-md hover:shadow-lg flex items-center justify-center gap-sm"
+                        type="submit">
                     Entrar
                 </button>
             </form>
+
             <p class="mt-xl text-center font-body-md text-body-md text-on-surface-variant">
                 Não possui uma conta?
                 <a class="text-primary font-bold hover:underline" href="#">Junte-se ao Athletica</a>
@@ -213,14 +231,12 @@
     </div>
 </footer>
 <script>
-    const toggleBtn = document.querySelector('button[type="button"]');
-    const passInput = document.getElementById('password');
-
-    toggleBtn.addEventListener('click', () => {
-        const type = passInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        passInput.setAttribute('type', type);
-        const icon = toggleBtn.querySelector('span');
-        icon.textContent = type === 'password' ? 'visibility' : 'visibility_off';
+    document.getElementById('togglePassword').addEventListener('click', () => {
+        const input = document.getElementById('password');
+        const icon = document.querySelector('#togglePassword span');
+        const isPassword = input.type === 'password';
+        input.type = isPassword ? 'text' : 'password';
+        icon.textContent = isPassword ? 'visibility_off' : 'visibility';
     });
 
     document.addEventListener('mousemove', (e) => {
@@ -231,5 +247,53 @@
             heroBg.style.transform = `scale(1.1) translate(${moveX}px, ${moveY}px)`;
         }
     });
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email    = document.getElementById('email').value.trim();
+        const senha    = document.getElementById('password').value;
+        const errorMsg = document.getElementById('errorMsg');
+        const errorTxt = document.getElementById('errorText');
+        const btn      = document.getElementById('submitBtn');
+
+        btn.disabled = true;
+        btn.innerHTML = `
+            <span class="material-symbols-outlined animate-spin text-lg">sync</span>
+            Entrando...
+        `;
+        errorMsg.classList.add('hidden');
+
+        try {
+            const response = await fetch('/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, senha }),
+                credentials: 'include' // necessário para aceitar o cookie do backend
+            });
+
+            if (response.ok) {
+                window.location.href = '/Home';
+            } else if (response.status === 401 || response.status === 403) {
+                errorTxt.textContent = 'Email ou senha incorretos.';
+                errorMsg.classList.remove('hidden');
+                resetarBotao();
+            } else {
+                errorTxt.textContent = 'Erro no servidor. Tente novamente.';
+                errorMsg.classList.remove('hidden');
+                resetarBotao();
+            }
+        } catch (err) {
+            errorTxt.textContent = 'Sem conexão com o servidor. Verifique se o backend está rodando.';
+            errorMsg.classList.remove('hidden');
+            resetarBotao();
+        }
+    });
+
+    function resetarBotao() {
+        const btn = document.getElementById('submitBtn');
+        btn.disabled = false;
+        btn.innerHTML = 'Entrar';
+    }
 </script>
 </body></html>

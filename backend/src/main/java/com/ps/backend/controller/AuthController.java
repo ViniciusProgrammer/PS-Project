@@ -1,5 +1,7 @@
 package com.ps.backend.controller;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,15 +21,20 @@ import com.ps.backend.service.AuthService;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+
     @Autowired
     AuthenticationManager authManager;
+
     @Autowired
     TokenService tokenService;
+
     @Autowired
     AuthService service;
 
     @PostMapping("/login")
-    public ResponseEntity<TokenDTO> login(@RequestBody LoginDTO data) {
+    public ResponseEntity<TokenDTO> login(
+            @RequestBody LoginDTO data,
+            HttpServletResponse response) {
 
         var authToken = new UsernamePasswordAuthenticationToken(
                 data.email(), data.senha()
@@ -37,7 +44,23 @@ public class AuthController {
         var usuario = (Usuario) auth.getPrincipal();
         var token = tokenService.gerarToken(usuario);
 
+        Cookie cookie = new Cookie("auth_token", token);
+        cookie.setHttpOnly(true);
+        cookie.setPath("/");
+        cookie.setMaxAge(7200);
+        response.addCookie(cookie);
+
         return ResponseEntity.ok(new TokenDTO(token));
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(HttpServletResponse response) {
+        Cookie cookie = new Cookie("auth_token", "");
+        cookie.setHttpOnly(true);
+        cookie.setPath("/");
+        cookie.setMaxAge(0); // expira imediatamente
+        response.addCookie(cookie);
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/register")
