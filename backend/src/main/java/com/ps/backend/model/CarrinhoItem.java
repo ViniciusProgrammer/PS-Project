@@ -2,19 +2,12 @@ package com.ps.backend.model;
 
 import java.time.LocalDateTime;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(
         name = "carrinho_itens",
         uniqueConstraints = @UniqueConstraint(columnNames = {"usuario_id", "foto_id"})
 )
-
-@Getter
-@Setter
-@NoArgsConstructor
 public class CarrinhoItem {
 
     @Id
@@ -37,5 +30,40 @@ public class CarrinhoItem {
         if (adicionadoEm == null) {
             adicionadoEm = LocalDateTime.now();
         }
+    }
+
+    public CarrinhoItem() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Foto getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Foto foto) {
+        this.foto = foto;
+    }
+
+    public LocalDateTime getAdicionadoEm() {
+        return adicionadoEm;
+    }
+
+    public void setAdicionadoEm(LocalDateTime adicionadoEm) {
+        this.adicionadoEm = adicionadoEm;
     }
 }

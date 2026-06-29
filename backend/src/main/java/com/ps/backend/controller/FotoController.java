@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/eventos/{eventoId}/fotos")
+@RequestMapping("/api/eventos/{eventoId}/fotos")
 public class FotoController {
     @Autowired
     private FotoService service;

@@ -11,15 +11,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.*;
 
 @Entity
 @Table(name = "usuario")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-
 public class Usuario implements UserDetails {
 
     @Id
@@ -89,4 +83,64 @@ public class Usuario implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "foto_id")
     )
     private List<Foto> fotosCompradas = new ArrayList<>();
+
+    public Usuario() {
+    }
+
+    public Usuario(Long id, String nome, String email, String senha, Role role, List<Foto> fotosCompradas) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.role = role;
+        this.fotosCompradas = fotosCompradas;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public List<Foto> getFotosCompradas() {
+        return fotosCompradas;
+    }
+
+    public void setFotosCompradas(List<Foto> fotosCompradas) {
+        this.fotosCompradas = fotosCompradas;
+    }
 }
