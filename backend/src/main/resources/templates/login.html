@@ -157,7 +157,7 @@
                 <h1 class="font-headline-sm text-headline-sm text-on-surface mb-xs">Seja muito Bem-Vindo(a)!</h1>
                 <p class="font-body-md text-body-md text-on-surface-variant">Acesse seu portfólio de fotografia e suas coleções</p>
             </div>
-            <div class="grid grid-cols-2 gap-md mb-lg">
+            <div id="socialButtons" class="grid grid-cols-2 gap-md mb-lg">
                 <button class="flex items-center justify-center gap-sm h-12 border border-border-light rounded-xl font-label-md text-label-md text-on-surface hover:bg-surface-container-low transition-colors active:scale-95 duration-200">
                     <img alt="Google" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEHzS9reiqvoLwsFzX7K-dW2ICwgW-n25UniwynYxfZOSEHUBRgz4VWbh6Hjg0GWC3WCUkoa87xjGKpaxGXZC0asvR4aXthz-g-CSlho0BhywJnRIyYrlCHpMwUeX7JTWCmFaI-Sk8U5aUAyRBk9hxVzcy0FAoAt2IuHs48v--WixMxeatyPjLJ7GJUaBf9XkrUhUf_LCK_VGjMKZhrQZcFdwZVe5FFhQSZErFqq7-EueoSI8TndPvsQ"/>
                     Google
@@ -167,7 +167,7 @@
                     Apple
                 </button>
             </div>
-            <div class="relative flex items-center mb-lg">
+            <div id="dividerLine" class="relative flex items-center mb-lg">
                 <div class="flex-grow border-t border-border-light"></div>
                 <span class="flex-shrink mx-md font-label-md text-label-md text-tertiary">ou entre com e-mail</span>
                 <div class="flex-grow border-t border-border-light"></div>
@@ -211,7 +211,8 @@
                         class="w-full h-12 bg-primary text-on-primary rounded-xl font-label-bold text-label-bold uppercase tracking-widest hover:bg-primary-container transition-all active:scale-[0.98] shadow-md hover:shadow-lg flex items-center justify-center gap-sm"
                         type="submit">
                     Entrar
-               </form>
+                </button>
+            </form>
 
             <!-- Link para alternar para cadastro -->
             <p id="linkParaCadastro" class="mt-xl text-center font-body-md text-body-md text-on-surface-variant">
@@ -312,8 +313,8 @@
     function mostrarCadastro() {
         document.getElementById('loginForm').classList.add('hidden');
         document.getElementById('linkParaCadastro').classList.add('hidden');
-        document.querySelector('.grid.grid-cols-2').classList.add('hidden'); // oculta botões Google/Apple
-        document.querySelector('.relative.flex.items-center').classList.add('hidden'); // oculta divisor
+        document.getElementById('socialButtons').classList.add('hidden');
+        document.getElementById('dividerLine').classList.add('hidden');
         document.querySelector('h1.font-headline-sm').textContent = 'Crie sua conta';
         document.querySelector('p.font-body-md').textContent = 'Cadastre-se e acesse sua galeria de fotos';
         document.getElementById('registerForm').classList.remove('hidden');
@@ -323,8 +324,8 @@
     function mostrarLogin() {
         document.getElementById('registerForm').classList.add('hidden');
         document.getElementById('linkParaLogin').classList.add('hidden');
-        document.querySelector('.grid.grid-cols-2').classList.remove('hidden');
-        document.querySelector('.relative.flex.items-center').classList.remove('hidden');
+        document.getElementById('socialButtons').classList.remove('hidden');
+        document.getElementById('dividerLine').classList.remove('hidden');
         document.querySelector('h1.font-headline-sm').textContent = 'Seja muito Bem-Vindo(a)!';
         document.querySelector('p.font-body-md').textContent = 'Acesse seu portfólio de fotografia e suas coleções';
         document.getElementById('loginForm').classList.remove('hidden');
